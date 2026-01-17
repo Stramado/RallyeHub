@@ -21,30 +21,43 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Handle the GET requests"""
-        # HTML pages
+        ## HTML / PHP display part ##
         if self.path == "/":
             self.path = "/index.php"
             try:
-                fileContent = open(f"./src/php{self.path}").read()
+                fileContent = open(f"./src/php{self.path}", "rb").read()
                 self.send_response(200)
                 self.send_header("Content-Type", self.MIMETYPES["html"])
                 self.end_headers()
-                self.wfile.write(bytes(fileContent, "utf-8"))
+                self.wfile.write(fileContent)
             except Exception as e:
                 print(e)
                 self.send_error(404)
         elif self.path == "/watch":
             try:
-                fileContent = open(f"./src/php{self.path}.php").read()
+                fileContent = open(f"./src/php{self.path}.php", "rb").read()
                 self.send_response(200)
                 self.send_header("Content-Type", self.MIMETYPES["html"])
                 self.end_headers()
-                self.wfile.write(bytes(fileContent, "utf-8"))
+                self.wfile.write(fileContent)
             except Exception as e:
                 print(e)
                 self.send_error(404) 
+
+        ## Javascript files handling part ##
+        elif "/src/js" in self.path:
+            try:
+                fileContent = open(f".{self.path}", "rb").read()
+                self.send_response(200)
+                self.send_header("Content-Type", self.MIMETYPES["js"])
+                self.end_headers()
+                self.wfile.write(fileContent)
+            except Exception as e:
+                print(e)
+                self.send_error(404)
+
+        ## Static files display part ##
         elif self.path.startswith("/static"):
-            # Static files
             try:
                 fileContent = open(f".{self.path}", "rb").read()
                 self.send_response(200)
@@ -66,14 +79,10 @@ class RequestHandler(BaseHTTPRequestHandler):
                         self.send_header("Content-Type",  self.MIMETYPES["gif"])
 
                 self.end_headers()
-                self.wfile.write(fileContent)
-            except IOError as notFound:
-                print(f"404 - Cannot find file {self.path}")
-                print("Error :", notFound)
-                self.send_error(404) 
+                self.wfile.write(fileContent) 
             except Exception as e:
                 print("An error as occured :", e)
-                self.send_error(500)
+                self.send_error(404)
         
         
 if __name__ == "__main__":
