@@ -1,0 +1,42 @@
+body{
+    background-color: brown;
+}
+
+header{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(18, 18, 11);
+
+
+}
+
+#logo{
+    display: flex;
+
+    height: 100px;
+    width: auto;
+}
+
+
+#bigdiv{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#researchBar{
+    z-index: 1;
+    width: 55%;
+    height: 50px;
+    background-color: rgb(150, 145, 145);
+    border-radius: 30px;
+    border: none;
+}
+
+.video{
+    width: 420px; 
+    height: 345px;
+}
