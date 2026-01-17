@@ -1,5 +1,4 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from os import curdir, sep
 
 HOST = "127.0.0.1"
 PORT = 80
@@ -21,7 +20,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     }
 
     def do_GET(self):
-        """Handle the GET request"""
+        """Handle the GET requests"""
         # HTML pages
         if self.path == "/":
             self.path = "/index.php"
