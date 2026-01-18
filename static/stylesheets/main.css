@@ -1,5 +1,11 @@
+:root {
+    --primary-bg-color : brown;
+
+}
+
 body{
     background-color: brown;
+    display: flex;
 }
 
 header{
@@ -39,4 +45,8 @@ header{
 .video{
     width: 420px; 
     height: 345px;
+}
+
+footer {
+    display: flex
 }
