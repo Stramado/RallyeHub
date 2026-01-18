@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,7 +13,7 @@
 </head>
 <body>
     <header>
-
+    <?php include "./src/php/header.php"; echo sampleHeader();?>
     </header>
 
     <main>
@@ -25,7 +21,7 @@
     </main>
 
     <footer>
-
+    
     </footer>
 </body>
 </html>
