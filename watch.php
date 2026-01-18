@@ -1,3 +1,7 @@
+<?php 
+include "./src/php/html_utils.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,16 +16,11 @@
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
 </head>
 <body>
-    <header>
-    <?php include "./src/php/header.php"; echo sampleHeader();?>
-    </header>
+    <?php echo headerSample(); # Header ?>
 
     <main>
-
+    <?php echo categoriesBarSample(); # Categories bar?>
     </main>
 
-    <footer>
-    
-    </footer>
 </body>
 </html>
