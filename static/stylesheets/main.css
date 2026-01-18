@@ -1,29 +1,28 @@
 :root {
     --primary-bg-color : brown;
-
+    --menus-bg-color : rgb(18, 18, 11);
 }
 
 body{
-    background-color: brown;
     display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-bg-color);
 }
 
 header{
     display: flex;
-    height: 100px;
-    width: 100%;
-    background-color: rgb(18, 18, 11);
-
-
+    position: fixed;
+    height: 15%;
+    width: 98%;
+    background-color: var(--menus-bg-color);
 }
 
-#logo{
+.logo{
     display: flex;
-
     height: 100px;
     width: auto;
 }
-
 
 #bigdiv{
     display: flex;
@@ -47,6 +46,12 @@ header{
     height: 345px;
 }
 
-footer {
-    display: flex
+.categoriesBar {
+    display: flex;
+    position: fixed;
+    width: 15%;
+    height: 90%;
+    left: 0.35%;
+    top: 10%;
+    background-color: var(--menus-bg-color);
 }
