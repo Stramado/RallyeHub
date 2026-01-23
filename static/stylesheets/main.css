@@ -11,7 +11,8 @@ body{
 }
 
 header{
-    display: flex;
+    /* display: flex; */
+    display: none;
     position: fixed;
     height: 15%;
     width: 98%;
@@ -44,14 +45,25 @@ header{
 .video{
     width: 420px; 
     height: 345px;
+    z-index: 0;
 }
 
 .categoriesBar {
-    display: flex;
+    /* display: flex; */
+    display: none;
     position: fixed;
     width: 15%;
     height: 90%;
     left: 0.35%;
     top: 10%;
     background-color: var(--menus-bg-color);
+}
+
+.redirectToWatch {
+    position: fixed;
+    opacity: 0;
+    z-index: 1;
+    background-color: blue;
+    height: 22vh; /* Dimensions of the embeded videos : height */
+    width: 19.5vw; /* Dimensions of the embeded videos : width */
 }
