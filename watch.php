@@ -1,5 +1,6 @@
 <?php 
 include "./src/php/html_utils.php";
+echo createHTMLElementFromJSON();
 ?>
 
 <!DOCTYPE html>

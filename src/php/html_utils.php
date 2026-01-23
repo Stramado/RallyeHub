@@ -35,4 +35,42 @@ function categoriesBarSample() {
     return $sample;
 }
 
+/**
+ * Parse a JSON file and extract it's content
+ * @return array Return JSON content as an array
+ */
+function getVideosFromJSON() {
+    try {
+        $fileContent = file_get_contents("./data/data.json");
+        $json = json_decode($fileContent, true);
+        return $json["videos"];
+    } catch (Exception $e) {
+        echo "Something went wrong : " . $e;
+        return $e;
+    }
+}
+
+/**
+ * Loop through an array and create an HTML element for every element of the array
+ * There is a invisible div in front of the embeded video which redirect to the watch video
+ * @return string HTML list of videos
+ */
+function createHTMLElementFromJSON() {
+    $videos = getVideosFromJSON();
+    $html = "";
+    foreach ($videos as $video) {
+        foreach ($video as $embed => $watch) {
+            $html = $html . '
+            <div class="watchVideo">
+                <a class="redirectToWatch" href=/watch.php?watch=' . $watch .'></a>
+                <div class="video">
+                    <iframe  src="' . $embed . '" frameborder="0"></iframe>
+                </div>
+            </div>
+            ';
+        }
+    }
+    return $html;
+}
+
 ?>
