@@ -17,7 +17,7 @@ function headerSample() {
         </div>
     </header>
     ';
-    return $header;
+    echo $header;
 }
 
 /**
@@ -32,7 +32,7 @@ function categoriesBarSample() {
         </div>
     </div>
     ';
-    return $sample;
+    echo $sample;
 }
 
 /**
@@ -64,13 +64,25 @@ function createHTMLElementFromJSON() {
             <div class="watchVideo">
                 <a class="redirectToWatch" href=/watch.php?watch=' . $watch .'></a>
                 <div class="video">
-                    <iframe  src="' . $embed . '" frameborder="0"></iframe>
+                    <iframe src="' . $embed . '" frameborder="0"></iframe>
                 </div>
             </div>
             ';
         }
     }
-    return $html;
+    echo $html;
+}
+
+/**
+ * Get the "watch" parameter from the url and add and iframe with the linked video
+ */
+function displayVideo() {
+    $video = $_GET["watch"] ?? null;
+    if (!empty($video)) {
+        echo '
+        <iframe src="' . $video . '"> </iframe>
+        ';
+    }
 }
 
 ?>

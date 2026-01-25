@@ -1,6 +1,5 @@
 <?php 
-include "./src/php/html_utils.php";
-echo createHTMLElementFromJSON();
+include "./src/php/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +16,13 @@ echo createHTMLElementFromJSON();
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
 </head>
 <body>
-    <?php echo headerSample(); # Header ?>
+    <?php headerSample(); # Header ?>
 
     <main>
-    <?php echo categoriesBarSample(); # Categories bar?>
+    <?php categoriesBarSample(); # Categories bar
+        displayVideo();
+        createHTMLElementFromJSON(); # List the videos
+    ?>
     </main>
 
 </body>
