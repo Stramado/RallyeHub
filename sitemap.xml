@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://www.ton-domaine.com/</loc>
+        <priority>1.00</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ton-domaine.com/watch.php</loc>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ton-domaine.com/static/stylesheets/index.css</loc>
+        <priority>0.40</priority>
+    </url>
+    <url>
+        <loc>https://www.ton-domaine.com/static/stylesheets/main.css</loc>
+        <priority>0.40</priority>
+    </url>
+    <url>
+        <loc>https://www.ton-domaine.com/static/stylesheets/watch.css</loc>
+        <priority>0.40</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ton-domaine.com/static/img/nerdfish.png</loc>
+        <priority>0.30</priority>
+    </url>
+
+</urlset>

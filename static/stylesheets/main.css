@@ -1,52 +1,42 @@
+/* ====================================
+   MAIN.CSS - Styles communs de base
+   ==================================== */
+
+/* --- VARIABLES CSS --- */
 :root {
-    --primary-bg-color : brown;
-
+    /* Palette Dark Mode */
+    --bg-dark: #121212;
+    --bg-card: #1a1a1a;
+    --bg-hover: #2a2a2a;
+    --border-color: #333333;
+    
+    /* Couleur Accent */
+    --primary-orange: #FF6600;
+    --primary-hover: #e65c00;
+    
+    /* Typographie */
+    --text-white: #ffffff;
+    --text-muted: #a1a1aa;
+    
+    /* Dimensions */
+    --header-height: 72px;
+    --sidebar-width: 280px;
+    --radius: 8px;
+    --container-width: 1440px;
 }
 
-body{
-    background-color: brown;
+/* --- RESET & BASE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
     display: flex;
-}
-
-header{
-    display: flex;
-    height: 100px;
-    width: 100%;
-    background-color: rgb(18, 18, 11);
-
-
-}
-
-#logo{
-    display: flex;
-
-    height: 100px;
-    width: auto;
-}
-
-
-#bigdiv{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-#researchBar{
-    z-index: 1;
-    width: 55%;
-    height: 50px;
-    background-color: rgb(150, 145, 145);
-    border-radius: 30px;
-    border: none;
-}
-
-.video{
-    width: 420px; 
-    height: 345px;
-}
-
-footer {
-    display: flex
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    line-height: 1.5;
 }

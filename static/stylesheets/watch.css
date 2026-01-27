@@ -1,0 +1,162 @@
+/* --- STYLES SPÉCIFIQUES PAGE VIDÉO --- */
+
+/* 1. Fil d'Ariane (Breadcrumb) */
+.breadcrumb {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+.breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+}
+.breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.breadcrumb a:hover {
+    color: var(--primary-orange);
+    text-decoration: underline;
+}
+
+/* 2. Lecteur Vidéo */
+.video-player-container {
+    width: 100%;
+    background-color: black;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 16/9; /* Force le format cinéma */
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+.video-player-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* L'image ne sera pas déformée */
+}
+
+/* 3. Infos Vidéo & Actions */
+.video-info-block {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.video-title {
+    font-size: 1.8rem; /* H1 bien gros */
+    color: var(--text-white);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.video-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.video-stats {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Boutons d'action spécifiques */
+.btn-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+    padding: 0.6rem 1rem;
+    border-radius: 20px; /* Forme pilule plus moderne */
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-action:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--primary-orange); /* Feedback visuel */
+}
+
+.btn-action.primary-outline {
+    border: 1px solid var(--primary-orange);
+    color: var(--primary-orange);
+    background: transparent;
+}
+.btn-action.primary-outline:hover {
+    background: rgba(255, 102, 0, 0.1);
+}
+
+/* 4. Description & Transcription */
+.video-description-area {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin-bottom: 3rem;
+}
+
+.description-text {
+    margin-bottom: 1.5rem;
+    color: #e0e0e0; /* Gris très clair pour la lisibilité sur fond noir */
+    max-width: 800px;
+}
+
+/* Accordéon Transcription */
+.transcript-accordion {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--bg-dark);
+}
+
+.transcript-accordion summary {
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary-orange);
+    list-style: none; /* Enlève la petite flèche par défaut sur certains navigateurs */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transcript-accordion summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.transcript-accordion summary::after {
+    content: '+'; 
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.transcript-accordion[open] summary::after {
+    content: '-';
+}
+
+.transcript-content {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+/* 5. Section Similaire */
+.similar-videos h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--primary-orange);
+    padding-left: 1rem;
+}
