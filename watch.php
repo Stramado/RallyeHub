@@ -11,9 +11,10 @@ include "./src/php/functions.php";
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
     <title>RallyeHub - Watch a Video</title>
-    <link rel="stylesheet" href="/static/stylesheets/main.css">
-    <link rel="stylesheet" href="/static/stylesheets/watch.css">
-    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="./static/stylesheets/main.css">
+    <link rel="stylesheet" href="./static/stylesheets/index.css">
+    <link rel="stylesheet" href="./static/stylesheets/watch.css">
+    <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -24,7 +25,7 @@ include "./src/php/functions.php";
         <div class="header-inner">
             <div class="logo">
                 <i data-lucide="car-front" class="logo-icon"></i>
-                <a href="index.html" style="text-decoration:none; color:inherit;">
+                <a href="/" style="text-decoration:none; color:inherit;">
                     <h1><span class="text-orange">Car</span>Videos</h1>
                 </a>
             </div>
@@ -48,7 +49,7 @@ include "./src/php/functions.php";
         <aside class="sidebar" role="navigation" aria-label="Menu principal">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-btn"><i data-lucide="layout-grid"></i> Accueil</a></li>
+                    <li><a href="/" class="nav-btn"><i data-lucide="layout-grid"></i> Accueil</a></li>
                     <li><button class="nav-btn active"><i data-lucide="zap"></i> Sport</button></li>
                     <li><button class="nav-btn"><i data-lucide="trophy"></i> Supercars</button></li>
                     </ul>
@@ -59,7 +60,7 @@ include "./src/php/functions.php";
             
             <nav aria-label="Fil d'Ariane" class="breadcrumb">
                 <ol>
-                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="/">Accueil</a></li>
                     <li><span aria-hidden="true">/</span></li>
                     <li><a href="#">Sport</a></li>
                     <li><span aria-hidden="true">/</span></li>
@@ -150,7 +151,7 @@ include "./src/php/functions.php";
         </main>
     </div>
 
-    <script>
+    <script src="./src/js/script.js">
         lucide.createIcons();
     </script>
 </body>

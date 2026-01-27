@@ -1,39 +1,3 @@
-/* --- 1. VARIABLES & RESET --- */
-:root {
-    /* Palette Dark Mode */
-    --bg-dark: #121212;
-    --bg-card: #1a1a1a;
-    --bg-hover: #2a2a2a;
-    --border-color: #333333;
-    
-    /* Couleur Accent */
-    --primary-orange: #FF6600;
-    --primary-hover: #e65c00;
-    
-    /* Typographie */
-    --text-white: #ffffff;
-    --text-muted: #a1a1aa;
-    
-    /* Dimensions */
-    --header-height: 72px;
-    --sidebar-width: 280px;
-    --radius: 8px;
-    --container-width: 1440px;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-white);
-    line-height: 1.5;
-}
-
 /* Accessibilité : Skip Link */
 .skip-link {
     position: absolute;
