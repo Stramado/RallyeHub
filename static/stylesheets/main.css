@@ -13,7 +13,6 @@ body{
 
 header{
     display: flex;
-    position: fixed;
     height: 15%;
     width: 98%;
     background-color: var(--menus-bg-color);
@@ -42,11 +41,7 @@ header{
     border: none;
 }
 
-.video{
-    width: 420px; 
-    height: 345px;
-    z-index: 0;
-}
+
 
 .categoriesBar {
     /* display: flex; */
@@ -67,3 +62,4 @@ header{
     height: 22vh; /* Dimensions of the embeded videos : height */
     width: 19.5vw; /* Dimensions of the embeded videos : width */
 }
+
