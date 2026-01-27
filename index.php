@@ -1,4 +1,5 @@
 <?php
+include './src/php/functions.php'
 ?>
 
 <!DOCTYPE html>
@@ -12,21 +13,14 @@
 </head>
 
 <body>
-    <header>
-        <div id="logo">
-            <img src="/static/img/nerdfish.png" alt="logo">
-        </div>
 
-        <div id="bigdiv">
-            <input type="text" placeholder="Search.."id="researchBar">
-        </div>
-    </header>
+    
+    <?php echo headerSample() ?>
+
 
     <div class="video">
         <iframe  src="https://www.youtube.com/embed/yHCravpCXTU" frameborder="0"></iframe>
-    </div>   <!-- passer url youtube de ca  https://www.youtube.com/watch?v=yHCravpCXTU a https://www.youtube.com/embed/yHCravpCXTU !-->                                                                                     
-    <div class="video"></div>    
-    <div class="video"></div>
+    </div>   <!-- passer url youtube de ca  https://www.youtube.com/watch?v=yHCravpCXTU a https://www.youtube.com/embed/yHCravpCXTU !-->
 
     <footer>
 

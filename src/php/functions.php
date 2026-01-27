@@ -10,7 +10,7 @@ function headerSample() {
         <div class="logo">
             <img src="/static/img/nerdfish.png" alt="logo">
         </div>
-        <div class="searchBar">
+        <div class="searchBar"> 
             <form method="POST">
                 <input type="text" placeholder="Rechercher une vidéo..." id="searchBar">
             </form>

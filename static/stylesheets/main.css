@@ -1,18 +1,18 @@
 :root {
-    --primary-bg-color : brown;
+    --primary-bg-color : rgb(65, 165, 42);
     --menus-bg-color : rgb(18, 18, 11);
 }
 
 body{
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     background-color: var(--primary-bg-color);
 }
 
 header{
-    /* display: flex; */
-    display: none;
+    display: flex;
     position: fixed;
     height: 15%;
     width: 98%;
