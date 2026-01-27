@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /watch.php
+Disallow: /README.md
+Disallow: /src/*
+Disallow: /data/*
+Sitemap: http://127.0.0.1/sitemap.xml
