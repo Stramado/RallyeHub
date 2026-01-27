@@ -85,25 +85,27 @@ function displayVideo() {
     }
 }
 
+/**
+ * Parse a JSON file and get the videos from the Array
+ */
+function parseJSONToGetVideos(){
+    $json = file_get_contents('data.json'); 
 
-    function embedvid(){
-        $json = file_get_contents('data.json'); 
+    if ($json === false) {
+        die('Error reading the JSON file');
+    }
 
-        if ($json === false) {
-            die('Error reading the JSON file');
-        }
+    $json_data = json_decode($json, true); 
 
-        $json_data = json_decode($json, true); 
+    if ($json_data === null) {
+        die('Error decoding the JSON file');
+    }
 
-        if ($json_data === null) {
-            die('Error decoding the JSON file');
-        }
-
-        foreach ($json_data['videos'][0] as $embed => $value) {
-            if ($value === "1") {
-                echo $value;
-                echo $embed;
-            }
+    foreach ($json_data['videos'][0] as $embed => $value) {
+        if ($value === "1") {
+            echo $value;
+            echo $embed;
         }
     }
+}
 ?>
