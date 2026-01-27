@@ -1,16 +1,19 @@
 <?php
 include './src/php/functions.php'
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="language" content="fr">
+    <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
+    <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
     <title>CarVideos - Galerie Accessible</title>
-    <meta name="description" content="Plateforme de vidéos de voitures accessible : sport, luxe, classiques et électriques.">
-    
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="./static/stylesheets/main.css">
+    <link rel="stylesheet" href="./static/stylesheets/index.css">
+    <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -264,6 +267,8 @@ include './src/php/functions.php'
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./src/js/script.js">
+        lucide.createIcons();
+    </script>
 </body>
 </html>
