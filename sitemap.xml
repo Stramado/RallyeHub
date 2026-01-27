@@ -26,6 +26,16 @@
     </url>
 
     <url>
+        <loc>https://www.ton-domaine.com/static/img/favicon.png</loc>
+        <priority>0.40</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ton-domaine.com/static/img/favicon.ico</loc>
+        <priority>0.35</priority>
+    </url>
+
+    <url>
         <loc>https://www.ton-domaine.com/static/img/nerdfish.png</loc>
         <priority>0.30</priority>
     </url>
