@@ -95,9 +95,33 @@ window.onclick = function(event) {
 async function getYouTubeMeta(embedUrl) {
   const videoId = embedUrl.match(/embed\/([a-zA-Z0-9_-]+)/)[1];
   const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-  const data = await res.json();
-  document.getElementById("video-info").innerHTML = `
-    <h3>${data.title}</h3>
-    <img src="${data.thumbnail_url}" alt="Thumbnail">
-  `;
+  return await res.json();
 }
+
+async function updateVideoCards() {
+  const cards = document.querySelectorAll('.video-card');
+
+  for (const card of cards) {
+    const embedUrl = card.dataset.embedUrl;
+    if (!embedUrl) continue;
+
+    try {
+      const data = await getYouTubeMeta(embedUrl);
+
+      // Titre
+      const titleElem = card.querySelector('.card-title');
+      if (titleElem) titleElem.textContent = data.title;
+
+      // Mise à jour du bouton overlay pour l'accessibilité
+      const btnOverlay = card.querySelector('.play-overlay');
+      if (btnOverlay) {
+        btnOverlay.setAttribute('aria-label', `Lire la vidéo : ${data.title}`);
+      }
+
+    } catch (err) {
+      console.error("Erreur métadonnées YouTube:", err);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateVideoCards);

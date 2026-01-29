@@ -24,7 +24,6 @@ function createHTMLElementFromJSON() {
     $videos = getVideosFromJSON();
     $html = "";
     
-    $index = 0;
     foreach ($videos as $video) {
         foreach ($video as $key => $embed) {
             // Extraire l'ID de la vidéo YouTube depuis l'URL embed
@@ -33,41 +32,37 @@ function createHTMLElementFromJSON() {
             
             // Générer l'URL de la miniature YouTube
             $thumbnail = "https://img.youtube.com/vi/{$videoId}/maxresdefault.jpg";
-            
-            // Récupérer les données de la vidéo (ou valeurs par défaut)
-            $data = $videoData[$index] ?? [
-                'title' => 'Vidéo Automobile',
-                'category' => 'Sport',
-                'views' => '10k',
-                'time' => '10:00',
-                'date' => 'Il y a quelques jours'
+            $categorie = [
+                0 => "Sport",
+                1 => "Supercars",
+                2 => "Luxe",
+                3 => "Électriques",
+                4 => "Classiques"
             ];
-            
+
             $html .= '
                 <a href="/watch.php?watch=' . htmlspecialchars($key) . '">
-                    <article class="video-card" data-category="' . htmlspecialchars($data['category']) . '" data-title="' . htmlspecialchars($data['title']) . '">
+                    <article class="video-card" 
+                             data-embed-url="' . htmlspecialchars($embed) . '" 
+                             data-video-id="' . htmlspecialchars($videoId) . '">
                         <div class="thumbnail-wrapper">
-                            <img src="' . htmlspecialchars($thumbnail) . '" alt="' . htmlspecialchars($data['title']) . '" loading="lazy" onerror="handleImageError(this)">
-                            <span class="duration-badge">' . htmlspecialchars($data['time']) . '</span>
-                            <button class="play-overlay" aria-label="Lire la vidéo : ' . htmlspecialchars($data['title']) . '">
+                            <img src="' . htmlspecialchars($thumbnail) . '" alt="" loading="lazy" onerror="handleImageError(this)" class="video-thumbnail">
+                            <span class="duration-badge"></span>
+                            <button class="play-overlay" aria-label="Lire la vidéo : ">
                                 <i data-lucide="play-circle"></i>
                             </button>
                         </div>
                         <div class="card-content">
                             <div class="card-header">
-                                <h3 class="card-title">' . htmlspecialchars($data['title']) . '</h3>
+                                <h3 class="card-title"></h3>
                                 <button class="btn-icon-sm" aria-label="Options"><i data-lucide="more-vertical"></i></button>
                             </div>
-                            <p class="card-category">' . htmlspecialchars($data['category']) . '</p>
-                            <div class="card-meta">
-                                <span>' . htmlspecialchars($data['views']) . ' vues</span> • <span>' . htmlspecialchars($data['date']) . '</span>
-                            </div>
+                            <p class="card-category">' . htmlspecialchars($categorie[random_int(0, 4)]) . '</p>
+                            
                         </div>
                     </article>
                 </a>
             ';
-            
-            $index++;
         }
     }
     echo $html;
