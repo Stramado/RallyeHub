@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
 Allow: /watch.php
+Allow: /watch.php?watch=*
+Allow: /static/*
 Disallow: /README.md
 Disallow: /src/*
 Disallow: /data/*
+Disallow: /.git
+
 Sitemap: http://127.0.0.1/sitemap.xml

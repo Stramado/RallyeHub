@@ -43,9 +43,9 @@ function createHTMLElementFromJSON() {
 function displayVideo() {
     $tab = getVideosFromJSON();
     $videos = $tab[0];
-    $watchId = $_GET["watch"] ?? null;
+    $watchId = $_GET["watch"] ?? "";
     
-    if (array_key_exists($watchId, $videos)) {
+    if (array_key_exists($watchId, $videos) && $watchId !== null) {
         $videoUrl = $videos[$watchId];
 
         echo '
@@ -62,7 +62,8 @@ function displayVideo() {
         </div>
         ';
     } else {
-        echo "Vidéo introuvable";
+        echo "<script>window.location.href='/'</script>";
+        die();
     }
 }
 
