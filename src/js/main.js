@@ -7,7 +7,7 @@ function handleImageError(imgElement) {
     // Si l'image ne charge pas, on met un placeholder ou on cache
     // Option A: Placeholder gris avec texte
     imgElement.src = 'https://cdn.pixabay.com/photo/2022/07/04/10/46/vintage-car-7300881_1280.jpg';
-    
+
     // Option B (Alternative): Si l'avatar casse, on affiche les initiales
     if (imgElement.parentElement.classList.contains('avatar')) {
         imgElement.style.display = 'none';
@@ -85,43 +85,9 @@ function toggleModal(modalId) {
 }
 
 // Fermer la modale si on clique en dehors
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('settings-modal');
     if (event.target === modal) {
         modal.classList.add('hidden');
     }
 }
-
-async function getYouTubeMeta(embedUrl) {
-  const videoId = embedUrl.match(/embed\/([a-zA-Z0-9_-]+)/)[1];
-  const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-  return await res.json();
-}
-
-async function updateVideoCards() {
-  const cards = document.querySelectorAll('.video-card');
-
-  for (const card of cards) {
-    const embedUrl = card.dataset.embedUrl;
-    if (!embedUrl) continue;
-
-    try {
-      const data = await getYouTubeMeta(embedUrl);
-
-      // Titre
-      const titleElem = card.querySelector('.card-title');
-      if (titleElem) titleElem.textContent = data.title;
-
-      // Mise à jour du bouton overlay pour l'accessibilité
-      const btnOverlay = card.querySelector('.play-overlay');
-      if (btnOverlay) {
-        btnOverlay.setAttribute('aria-label', `Lire la vidéo : ${data.title}`);
-      }
-
-    } catch (err) {
-      console.error("Erreur métadonnées YouTube:", err);
-    }
-  }
-}
-
-document.addEventListener("DOMContentLoaded", updateVideoCards);
