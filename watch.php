@@ -68,13 +68,6 @@ include "./src/php/functions.php";
                 </ol>
             </nav>
 
-            <!-- <div class="video-player-container">
-                <video controls poster="https://images.unsplash.com/photo-1503376763036-066120622c74?w=1280&q=80">
-                    <source src="movie.mp4" type="video/mp4">
-                    <track src="subtitles_fr.vtt" kind="captions" srclang="fr" label="Français">
-                    Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-            </div> -->
             <?php displayVideo(); # Parse the GET arguments and display the video ?>
 
             <div class="video-info-block">
