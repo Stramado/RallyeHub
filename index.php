@@ -5,22 +5,24 @@ include './src/php/functions.php'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="language" content="fr">
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
-    <title>CarVideos - Galerie Accessible</title>
+    <title>CarVideos - Galerie des vidéos</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./src/js/youtube_meta.js"></script>
+    <script src="./src/js/main.js"></script>
 </head>
 <body>
 
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
-    <header class="site-header" role="banner">
+    <header class="site-header">
         <div class="header-inner">
             <div class="logo">
                 <i data-lucide="car-front" class="logo-icon"></i>
@@ -51,7 +53,6 @@ include './src/php/functions.php'
                 
                 <button class="avatar" aria-label="Profil utilisateur">
                     <img src="https://github.com/shadcn.png" alt="Avatar de l'utilisateur" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="avatar-fallback">CN</div>
                 </button>
             </div>
         </div>
@@ -59,7 +60,7 @@ include './src/php/functions.php'
 
     <div class="layout-container">
         
-        <aside class="sidebar" role="navigation" aria-label="Menu principal">
+        <aside class="sidebar" aria-label="Menu principal">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li>
@@ -106,7 +107,7 @@ include './src/php/functions.php'
             </div>
         </aside>
 
-        <main id="main-content" class="main-content" role="main">
+        <main id="main-content" class="main-content">
             
             <div class="content-header">
                 <h2 id="page-title">Toutes les vidéos</h2>
@@ -175,9 +176,6 @@ include './src/php/functions.php'
         </div>
     </div>
 
-    <script src="./src/js/main.js">
-        lucide.createIcons();
-    </script>
-    <script src="./src/js/youtube_meta.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>

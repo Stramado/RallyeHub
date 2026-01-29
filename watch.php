@@ -16,6 +16,7 @@ include "./src/php/functions.php";
     <link rel="stylesheet" href="./static/stylesheets/watch.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./src/js/main.js"></script>
     <script src="./src/js/load_title.js"></script>
     <script src="./src/js/youtube_meta.js"></script>
 </head>
@@ -23,7 +24,7 @@ include "./src/php/functions.php";
 
     <a href="#video-main" class="skip-link">Aller directement à la vidéo</a>
 
-    <header class="site-header" role="banner">
+    <header class="site-header">
         <div class="header-inner">
             <div class="logo">
                 <i data-lucide="car-front" class="logo-icon"></i>
@@ -41,14 +42,15 @@ include "./src/php/functions.php";
                 </form>
             </div>
             <div class="header-actions">
-                <button class="avatar" aria-label="Profil"><div class="avatar-fallback">CN</div></button>
+                <button class="avatar" aria-label="Profil">
+                </button>
             </div>
         </div>
     </header>
 
     <div class="layout-container">
         
-        <aside class="sidebar" role="navigation" aria-label="Menu principal">
+        <aside class="sidebar" aria-label="Menu principal">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li><a href="/" class="nav-btn"><i data-lucide="layout-grid"></i> Accueil</a></li>
@@ -58,7 +60,7 @@ include "./src/php/functions.php";
             </nav>
         </aside>
 
-        <main id="video-main" class="main-content" role="main">
+        <main id="video-main" class="main-content">
             
             <nav aria-label="Fil d'Ariane" class="breadcrumb">
                 <ol>
@@ -117,8 +119,6 @@ include "./src/php/functions.php";
         </main>
     </div>
 
-    <script src="./src/js/main.js">
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
