@@ -91,3 +91,13 @@ window.onclick = function(event) {
         modal.classList.add('hidden');
     }
 }
+
+async function getYouTubeMeta(embedUrl) {
+  const videoId = embedUrl.match(/embed\/([a-zA-Z0-9_-]+)/)[1];
+  const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+  const data = await res.json();
+  document.getElementById("video-info").innerHTML = `
+    <h3>${data.title}</h3>
+    <img src="${data.thumbnail_url}" alt="Thumbnail">
+  `;
+}
