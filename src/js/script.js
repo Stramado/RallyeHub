@@ -91,3 +91,50 @@ window.onclick = function(event) {
         modal.classList.add('hidden');
     }
 }
+
+
+
+
+
+
+
+
+var Youtube = (function () {
+    'use strict';
+
+    function extractVideoId(url) {
+        if (!url) return null;
+
+        // watch?v=
+        var match = url.match(/[?&]v=([^&#]+)/);
+        if (match) return match[1];
+
+        // embed/
+        match = url.match(/embed\/([^?&#]+)/);
+        if (match) return match[1];
+
+        // youtu.be/
+        match = url.match(/youtu\.be\/([^?&#]+)/);
+        if (match) return match[1];
+
+        return null;
+    }
+
+    function getThumb(url, size = 'hq') {
+        var videoId = extractVideoId(url);
+        if (!videoId) return '';
+
+        switch (size) {
+            case 'small':
+                return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+            case 'max':
+                return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            default:
+                return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
+    }
+
+    return {
+        thumb: getThumb
+    };
+})();

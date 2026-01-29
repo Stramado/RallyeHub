@@ -50,28 +50,6 @@ function getVideosFromJSON() {
     }
 }
 
-/**
- * Loop through an array and create an HTML element for every element of the array
- * There is a invisible div in front of the embeded video which redirect to the watch video
- * @return string HTML list of videos
- */
-function createHTMLElementFromJSON() {
-    $videos = getVideosFromJSON();
-    $html = "";
-    foreach ($videos as $video) {
-        foreach ($video as $embed => $watch) {
-            $html = $html . '
-            <div class="watchVideo">
-                <a class="redirectToWatch" href=/watch.php?watch=' . $watch .'></a>
-                <div class="video">
-                    <iframe src="' . $embed . '" frameborder="0"></iframe>
-                </div>
-            </div>
-            ';
-        }
-    }
-    echo $html;
-}
 
 /**
  * Get the "watch" parameter from the url and add and iframe with the linked video
