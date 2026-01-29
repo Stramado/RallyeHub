@@ -8,7 +8,7 @@ include "./src/php/functions.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="language" content="fr">
-    <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
+    <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyeHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
     <title>RallyeHub - Watch a Video</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
@@ -24,9 +24,8 @@ include "./src/php/functions.php";
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="logo">
-                <i data-lucide="car-front" class="logo-icon"></i>
-                <a href="/" style="text-decoration:none; color:inherit;">
-                    <h1><span class="text-orange">Car</span>Videos</h1>
+                <a href="/" style="display: flex; align-items: center;">
+                    <img src="./static/img/logo.png" alt="RallyeHub Accueil">
                 </a>
             </div>
             <div class="search-container">
@@ -38,8 +37,16 @@ include "./src/php/functions.php";
                     </div>
                 </form>
             </div>
+            
             <div class="header-actions">
-                <button class="avatar" aria-label="Profil"><div class="avatar-fallback">CN</div></button>
+                <button class="btn-icon" aria-label="Paramètres d'accessibilité" onclick="toggleModal('settings-modal')">
+                    <i data-lucide="person-standing" style="width: 28px; height: 28px;"></i>
+                </button>
+                
+                <button class="avatar" aria-label="Profil utilisateur">
+                    <img src="https://github.com/shadcn.png" alt="Avatar de l'utilisateur" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-fallback">CN</div>
+                </button>
             </div>
         </div>
     </header>
@@ -84,9 +91,6 @@ include "./src/php/functions.php";
                         <button class="btn-action" aria-label="Partager la vidéo">
                             <i data-lucide="share-2"></i> <span>Partager</span>
                         </button>
-                        <button class="btn-action primary-outline" aria-label="Télécharger la transcription">
-                            <i data-lucide="file-text"></i> <span>Transcription</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -95,15 +99,6 @@ include "./src/php/functions.php";
                 <div class="description-text">
                     <p>Découvrez notre essai complet de la nouvelle Porsche 911 GT3. Au programme : tour de piste, analyse du moteur atmosphérique et test des équipements intérieurs.</p>
                 </div>
-
-                <details class="transcript-accordion">
-                    <summary>Lire la transcription textuelle</summary>
-                    <div class="transcript-content">
-                        <p><strong>[00:00]</strong> Musique d'introduction dynamique.</p>
-                        <p><strong>[00:15] Présentateur :</strong> Bonjour à tous et bienvenue sur CarVideos. Aujourd'hui nous sommes sur le circuit du Mans...</p>
-                        <p><strong>[00:30]</strong> Bruit de moteur qui rugit.</p>
-                        </div>
-                </details>
             </div>
 
             <section class="similar-videos">
@@ -143,6 +138,42 @@ include "./src/php/functions.php";
             </section>
 
         </main>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Paramètres d'accessibilité</h2>
+                <button class="btn-icon" onclick="toggleModal('settings-modal')" aria-label="Fermer">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Mode Contraste Élevé</span>
+                        <span class="setting-desc">Augmente la lisibilité du texte</span>
+                    </div>
+                    <label class="switch-label">
+                        <input type="checkbox" class="switch-input">
+                        <span class="sr-only">Activer le contraste élevé</span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Réduire les animations</span>
+                        <span class="setting-desc">Minimise les mouvements à l'écran</span>
+                    </div>
+                    <label class="switch-label">
+                        <input type="checkbox" class="switch-input" checked>
+                        <span class="sr-only">Activer la réduction d'animations</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="toggleModal('settings-modal')">Enregistrer</button>
+            </div>
+        </div>
     </div>
 
     <script src="./src/js/script.js">

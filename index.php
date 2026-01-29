@@ -8,13 +8,14 @@ include './src/php/functions.php'
      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="language" content="fr">
-    <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
+    <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyeHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
-    <title>CarVideos - Galerie Accessible</title>
+    <title>RallyeHub</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
+ 
 </head>
 <body>
 
@@ -23,8 +24,9 @@ include './src/php/functions.php'
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="logo">
-                <i data-lucide="car-front" class="logo-icon"></i>
-                <h1><span class="text-orange">Car</span>Videos</h1>
+                <a href="/" style="display: flex; align-items: center;">
+                    <img src="./static/img/logo.png" alt="RallyeHub Accueil">
+                </a>
             </div>
 
             <div class="search-container">
@@ -45,8 +47,8 @@ include './src/php/functions.php'
             </div>
 
             <div class="header-actions">
-                <button class="btn-icon" aria-label="Paramètres" onclick="toggleModal('settings-modal')">
-                    <i data-lucide="settings"></i>
+                <button class="btn-icon" aria-label="Paramètres d'accessibilité" onclick="toggleModal('settings-modal')">
+                    <i data-lucide="person-standing" style="width: 28px; height: 28px;"></i>
                 </button>
                 
                 <button class="avatar" aria-label="Profil utilisateur">
@@ -96,14 +98,7 @@ include './src/php/functions.php'
             </nav>
 
             <div class="sidebar-footer">
-                <div class="info-card">
-                    <h3>Accessibilité</h3>
-                    <p>Contraste élevé activé</p>
-                    <div class="progress-root" role="progressbar" aria-label="Niveau d'accessibilité" aria-valuenow="100">
-                        <div class="progress-indicator" style="width: 100%;"></div>
-                    </div>
                 </div>
-            </div>
         </aside>
 
         <main id="main-content" class="main-content" role="main">
@@ -129,9 +124,9 @@ include './src/php/functions.php'
                     <div class="thumbnail-wrapper">
                         <img src="https://images.unsplash.com/photo-1742056024244-02a093dae0b5?w=800&q=80" alt="Supercar de Luxe sur route" loading="lazy" onerror="handleImageError(this)">
                         <span class="duration-badge">12:04</span>
-                        <button class="play-overlay" aria-label="Lire la vidéo : Supercar de Luxe">
+                        <a href="watch.php?watch=1" class="play-overlay" aria-label="Lire la vidéo : Supercar de Luxe">
                             <i data-lucide="play-circle"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="card-content">
                         <div class="card-header">
@@ -149,9 +144,9 @@ include './src/php/functions.php'
                     <div class="thumbnail-wrapper">
                         <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80" alt="Ferrari rouge vue de face" loading="lazy" onerror="handleImageError(this)">
                         <span class="duration-badge">08:45</span>
-                        <button class="play-overlay" aria-label="Lire la vidéo : Ferrari Rouge">
+                        <a href="watch.php?watch=2" class="play-overlay" aria-label="Lire la vidéo : Ferrari Rouge">
                             <i data-lucide="play-circle"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Ferrari Rouge - Performance Extrême</h3>
@@ -164,9 +159,9 @@ include './src/php/functions.php'
                     <div class="thumbnail-wrapper">
                         <img src="https://cdn.pixabay.com/photo/2023/07/19/12/16/car-8136751_1280.jpg" alt="Lamborghini bleue garée" loading="lazy" onerror="handleImageError(this)">
                         <span class="duration-badge">15:30</span>
-                        <button class="play-overlay" aria-label="Lire la vidéo : Lamborghini Bleue">
+                        <a href="watch.php?watch=3" class="play-overlay" aria-label="Lire la vidéo : Lamborghini Bleue">
                             <i data-lucide="play-circle"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Lamborghini Bleue - Design Iconique</h3>
@@ -179,9 +174,9 @@ include './src/php/functions.php'
                     <div class="thumbnail-wrapper">
                         <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&q=80" alt="Tesla blanche en mouvement" loading="lazy" onerror="handleImageError(this)">
                         <span class="duration-badge">10:15</span>
-                        <button class="play-overlay" aria-label="Lire la vidéo : Tesla Model S">
+                        <a href="watch.php?watch=4" class="play-overlay" aria-label="Lire la vidéo : Tesla Model S">
                             <i data-lucide="play-circle"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Tesla Model S - Futur Électrique</h3>
@@ -194,9 +189,9 @@ include './src/php/functions.php'
                     <div class="thumbnail-wrapper">
                         <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80" alt="Ford Mustang classique" loading="lazy" onerror="handleImageError(this)">
                         <span class="duration-badge">18:20</span>
-                        <button class="play-overlay" aria-label="Lire la vidéo : Mustang 1967">
+                        <a href="watch.php?watch=5" class="play-overlay" aria-label="Lire la vidéo : Mustang 1967">
                             <i data-lucide="play-circle"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Mustang 1967 - Puissance Américaine</h3>
@@ -208,9 +203,9 @@ include './src/php/functions.php'
                     <div class="thumbnail-wrapper">
                         <img src="https://cdn.pixabay.com/photo/2015/11/06/16/33/rolls-1029584_1280.jpg" alt="Intérieur Rolls Royce" loading="lazy" onerror="handleImageError(this)">
                         <span class="duration-badge">22:00</span>
-                        <button class="play-overlay" aria-label="Lire la vidéo : Rolls Royce">
+                        <a href="watch.php?watch=6" class="play-overlay" aria-label="Lire la vidéo : Rolls Royce">
                             <i data-lucide="play-circle"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Rolls Royce - Silence Absolu</h3>

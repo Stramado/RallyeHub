@@ -35,6 +35,20 @@
     outline-offset: 4px;
 }
 
+/* === AJOUTS HEADER (Logo & Actions) === */
+.logo img {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Ajustement alignement header actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 /* --- 2. LAYOUT --- */
 .site-header {
     background-color: var(--bg-card);

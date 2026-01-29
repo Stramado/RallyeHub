@@ -1,5 +1,18 @@
 /* --- STYLES SPÉCIFIQUES PAGE VIDÉO --- */
 
+/* === AJOUTS HEADER (Logo & Actions) === */
+.logo img {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 /* 1. Fil d'Ariane (Breadcrumb) */
 .breadcrumb {
     margin-bottom: 1.5rem;

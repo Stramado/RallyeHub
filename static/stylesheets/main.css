@@ -40,3 +40,38 @@ body {
     color: var(--text-white);
     line-height: 1.5;
 }
+
+/* --- MODE CONTRASTE ÉLEVÉ --- */
+/* Cette classe sera ajoutée au <body> via JavaScript */
+body.high-contrast {
+    /* On écrase les variables pour maximiser le contraste */
+    --bg-dark: #000000;
+    --bg-card: #000000;
+    --bg-hover: #1a1a1a;
+    --border-color: #ffffff;      /* Bordures blanches très visibles */
+    
+    --text-white: #ffffff;
+    --text-muted: #ffff00;        /* Le texte gris devient Jaune fluo */
+    --primary-orange: #00ffff;    /* L'orange devient Cyan (très contrasté sur noir) */
+}
+
+/* Ajustements spécifiques pour le mode contraste */
+body.high-contrast .video-card {
+    border: 2px solid var(--border-color); /* Bordures plus épaisses */
+}
+
+/* --- MODE ANIMATIONS RÉDUITES --- */
+body.reduced-motion * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}
+
+/* Force le texte en NOIR sur les éléments qui ont le fond Cyan */
+body.high-contrast .nav-btn.active,
+body.high-contrast .btn-primary,
+body.high-contrast .skip-link,
+body.high-contrast .pagination-link.active {
+    color: #000000 !important; /* Texte noir pur */
+    font-weight: 900;           /* Texte très gras */
+}
