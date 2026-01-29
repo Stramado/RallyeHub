@@ -1,21 +1,10 @@
 <?php
-include './src/php/functions.php';
+include './src/php/functions.php'
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
-<html lang="fr">
 <head>
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="language" content="fr">
-    <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
-    <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
-    <title>CarVideos - Galerie Accessible</title>
-    <link rel="stylesheet" href="./static/stylesheets/main.css">
-    <link rel="stylesheet" href="./static/stylesheets/index.css">
-    <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
-    <script src="https://unpkg.com/lucide@latest"></script>
      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="language" content="fr">
@@ -55,42 +44,6 @@ include './src/php/functions.php';
                 </form>
             </div>
 
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-
-    <header class="site-header" role="banner">
-        <div class="header-inner">
-            <div class="logo">
-                <i data-lucide="car-front" class="logo-icon"></i>
-                <h1><span class="text-orange">Car</span>Videos</h1>
-            </div>
-
-            <div class="search-container">
-                <form role="search" onsubmit="event.preventDefault(); filterVideos();">
-                    <label for="search-input" class="sr-only">Rechercher des vidéos</label>
-                    <div class="input-wrapper">
-                        <i data-lucide="search" class="search-icon"></i>
-                        <input 
-                            id="search-input" 
-                            type="search" 
-                            class="input-field search-input"
-                            placeholder="Rechercher une Ferrari, Tesla..."
-                            aria-label="Rechercher des vidéos de voitures"
-                            oninput="filterVideos()"
-                        >
-                    </div>
-                </form>
-            </div>
-
-            <div class="header-actions">
-                <button class="btn-icon" aria-label="Paramètres" onclick="toggleModal('settings-modal')">
-                    <i data-lucide="settings"></i>
-                </button>
-                
-                <button class="avatar" aria-label="Profil utilisateur">
-                    <img src="https://github.com/shadcn.png" alt="Avatar de l'utilisateur" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="avatar-fallback">CN</div>
-                </button>
-            </div>
             <div class="header-actions">
                 <button class="btn-icon" aria-label="Paramètres" onclick="toggleModal('settings-modal')">
                     <i data-lucide="settings"></i>

@@ -26,7 +26,7 @@ function createHTMLElementFromJSON() {
     
     $index = 0;
     foreach ($videos as $video) {
-        foreach ($video as $embed => $watch) {
+        foreach ($video as $key => $embed) {
             // Extraire l'ID de la vidéo YouTube depuis l'URL embed
             preg_match('/embed\/([^?]+)/', $embed, $matches);
             $videoId = $matches[1] ?? '';
@@ -44,7 +44,7 @@ function createHTMLElementFromJSON() {
             ];
             
             $html .= '
-                <a href="/watch.php?watch=' . htmlspecialchars($watch) . '">
+                <a href="/watch.php?watch=' . htmlspecialchars($key) . '">
                     <article class="video-card" data-category="' . htmlspecialchars($data['category']) . '" data-title="' . htmlspecialchars($data['title']) . '">
                         <div class="thumbnail-wrapper">
                             <img src="' . htmlspecialchars($thumbnail) . '" alt="' . htmlspecialchars($data['title']) . '" loading="lazy" onerror="handleImageError(this)">
@@ -117,8 +117,8 @@ function parseJSONToGetVideos(){
 
     foreach ($json_data['videos'][0] as $key => $value) {
         if ($value === "1") {
-            echo $key;
             echo $value;
+            echo $key;
         }
     }
 }
