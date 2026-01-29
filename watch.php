@@ -10,18 +10,21 @@ include "./src/php/functions.php";
     <meta name="language" content="fr">
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyeHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
-    <title>RallyeHub - Watch a Video</title>
+    <title>RallyeHub - Regarder une vidéo</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="stylesheet" href="./static/stylesheets/watch.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./src/js/main.js"></script>
+    <script src="./src/js/load_title.js"></script>
+    <script src="./src/js/youtube_meta.js"></script>
 </head>
 <body>
 
     <a href="#video-main" class="skip-link">Aller directement à la vidéo</a>
 
-    <header class="site-header" role="banner">
+    <header class="site-header">
         <div class="header-inner">
             <div class="logo">
                 <a href="/" style="display: flex; align-items: center;">
@@ -53,7 +56,7 @@ include "./src/php/functions.php";
 
     <div class="layout-container">
         
-        <aside class="sidebar" role="navigation" aria-label="Menu principal">
+        <aside class="sidebar" aria-label="Menu principal">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li><a href="/" class="nav-btn"><i data-lucide="layout-grid"></i> Accueil</a></li>
@@ -63,7 +66,7 @@ include "./src/php/functions.php";
             </nav>
         </aside>
 
-        <main id="video-main" class="main-content" role="main">
+        <main id="video-main" class="main-content">
             
             <nav aria-label="Fil d'Ariane" class="breadcrumb">
                 <ol>
@@ -78,7 +81,7 @@ include "./src/php/functions.php";
             <?php displayVideo(); # Parse the GET arguments and display the video ?>
 
             <div class="video-info-block">
-                <h1 class="video-title">Porsche 911 GT3 - L'essai ultime sur circuit</h1>
+                <h1 class="video-title"></h1>
                 
                 <div class="video-actions">
                     <div class="video-stats">
@@ -97,46 +100,16 @@ include "./src/php/functions.php";
 
             <div class="video-description-area">
                 <div class="description-text">
-                    <p>Découvrez notre essai complet de la nouvelle Porsche 911 GT3. Au programme : tour de piste, analyse du moteur atmosphérique et test des équipements intérieurs.</p>
+                    <p>Incroyable voiture de Rallye (WRC) qui roule. Venez regarder comme son 4 cylindres hurle et comme le pilote prend ses virages</p>
                 </div>
             </div>
 
             <section class="similar-videos">
                 <h2>Vidéos similaires</h2>
                 <div class="video-grid">
-                    <article class="video-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://images.unsplash.com/photo-1544602356-ac9a60faa826?w=600&q=80" alt="Lamborghini Huracan">
-                            <span class="duration-badge">08:30</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Lamborghini Huracan EVO</h3>
-                            <p class="card-category">Supercars</p>
-                        </div>
-                    </article>
-                    <article class="video-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&q=80" alt="Tesla Model S">
-                            <span class="duration-badge">12:15</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Tesla Model S Plaid</h3>
-                            <p class="card-category">Électriques</p>
-                        </div>
-                    </article>
-                    <article class="video-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80" alt="Ford Mustang">
-                            <span class="duration-badge">10:00</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Ford Mustang V8</h3>
-                            <p class="card-category">Classiques</p>
-                        </div>
-                    </article>
+                    <?php createHTMLElementFromJSON();?>
                 </div>
             </section>
-
         </main>
     </div>
 
@@ -176,8 +149,42 @@ include "./src/php/functions.php";
         </div>
     </div>
 
-    <script src="./src/js/script.js">
-        lucide.createIcons();
-    </script>
+    <div id="settings-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Paramètres d'accessibilité</h2>
+                <button class="btn-icon" onclick="toggleModal('settings-modal')" aria-label="Fermer">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Mode Contraste Élevé</span>
+                        <span class="setting-desc">Augmente la lisibilité du texte</span>
+                    </div>
+                    <label class="switch-label">
+                        <input type="checkbox" class="switch-input">
+                        <span class="sr-only">Activer le contraste élevé</span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Réduire les animations</span>
+                        <span class="setting-desc">Minimise les mouvements à l'écran</span>
+                    </div>
+                    <label class="switch-label">
+                        <input type="checkbox" class="switch-input" checked>
+                        <span class="sr-only">Activer la réduction d'animations</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="toggleModal('settings-modal')">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>lucide.createIcons();</script>
 </body>
 </html>

@@ -5,23 +5,24 @@ include './src/php/functions.php'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="language" content="fr">
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyeHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
-    <title>RallyeHub</title>
+    <title>RallyeHub - Galerie des Vidéos</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
- 
+    <script src="./src/js/youtube_meta.js"></script>
+    <script src="./src/js/main.js"></script>
 </head>
 <body>
 
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
-    <header class="site-header" role="banner">
+    <header class="site-header">
         <div class="header-inner">
             <div class="logo">
                 <a href="/" style="display: flex; align-items: center;">
@@ -53,7 +54,6 @@ include './src/php/functions.php'
                 
                 <button class="avatar" aria-label="Profil utilisateur">
                     <img src="https://github.com/shadcn.png" alt="Avatar de l'utilisateur" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="avatar-fallback">CN</div>
                 </button>
             </div>
         </div>
@@ -61,7 +61,7 @@ include './src/php/functions.php'
 
     <div class="layout-container">
         
-        <aside class="sidebar" role="navigation" aria-label="Menu principal">
+        <aside class="sidebar" aria-label="Menu principal">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li>
@@ -101,7 +101,7 @@ include './src/php/functions.php'
                 </div>
         </aside>
 
-        <main id="main-content" class="main-content" role="main">
+        <main id="main-content" class="main-content">
             
             <div class="content-header">
                 <h2 id="page-title">Toutes les vidéos</h2>
@@ -119,101 +119,9 @@ include './src/php/functions.php'
             </div>
 
             <div class="video-grid" id="video-grid">
-                
-                <article class="video-card" data-category="Sport" data-title="Supercar de Luxe - Essai Complet">
-                    <div class="thumbnail-wrapper">
-                        <img src="https://images.unsplash.com/photo-1742056024244-02a093dae0b5?w=800&q=80" alt="Supercar de Luxe sur route" loading="lazy" onerror="handleImageError(this)">
-                        <span class="duration-badge">12:04</span>
-                        <a href="watch.php?watch=1" class="play-overlay" aria-label="Lire la vidéo : Supercar de Luxe">
-                            <i data-lucide="play-circle"></i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3 class="card-title">Supercar de Luxe - Essai Complet</h3>
-                            <button class="btn-icon-sm" aria-label="Options"><i data-lucide="more-vertical"></i></button>
-                        </div>
-                        <p class="card-category">Sport</p>
-                        <div class="card-meta">
-                            <span>12k vues</span> • <span>Il y a 2 jours</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="video-card" data-category="Supercars" data-title="Ferrari Rouge - Performance Extrême">
-                    <div class="thumbnail-wrapper">
-                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80" alt="Ferrari rouge vue de face" loading="lazy" onerror="handleImageError(this)">
-                        <span class="duration-badge">08:45</span>
-                        <a href="watch.php?watch=2" class="play-overlay" aria-label="Lire la vidéo : Ferrari Rouge">
-                            <i data-lucide="play-circle"></i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Ferrari Rouge - Performance Extrême</h3>
-                        <p class="card-category">Supercars</p>
-                        <div class="card-meta"><span>45k vues</span> • <span>Il y a 1 semaine</span></div>
-                    </div>
-                </article>
-
-                <article class="video-card" data-category="Supercars" data-title="Lamborghini Bleue - Design Iconique">
-                    <div class="thumbnail-wrapper">
-                        <img src="https://cdn.pixabay.com/photo/2023/07/19/12/16/car-8136751_1280.jpg" alt="Lamborghini bleue garée" loading="lazy" onerror="handleImageError(this)">
-                        <span class="duration-badge">15:30</span>
-                        <a href="watch.php?watch=3" class="play-overlay" aria-label="Lire la vidéo : Lamborghini Bleue">
-                            <i data-lucide="play-circle"></i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Lamborghini Bleue - Design Iconique</h3>
-                        <p class="card-category">Supercars</p>
-                        <div class="card-meta"><span>89k vues</span> • <span>Il y a 3 semaines</span></div>
-                    </div>
-                </article>
-
-                <article class="video-card" data-category="Électriques" data-title="Tesla Model S - Futur Électrique">
-                    <div class="thumbnail-wrapper">
-                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&q=80" alt="Tesla blanche en mouvement" loading="lazy" onerror="handleImageError(this)">
-                        <span class="duration-badge">10:15</span>
-                        <a href="watch.php?watch=4" class="play-overlay" aria-label="Lire la vidéo : Tesla Model S">
-                            <i data-lucide="play-circle"></i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Tesla Model S - Futur Électrique</h3>
-                        <p class="card-category">Électriques</p>
-                        <div class="card-meta"><span>230k vues</span> • <span>Il y a 1 mois</span></div>
-                    </div>
-                </article>
-
-                <article class="video-card" data-category="Classiques" data-title="Mustang 1967 - Puissance Américaine">
-                    <div class="thumbnail-wrapper">
-                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80" alt="Ford Mustang classique" loading="lazy" onerror="handleImageError(this)">
-                        <span class="duration-badge">18:20</span>
-                        <a href="watch.php?watch=5" class="play-overlay" aria-label="Lire la vidéo : Mustang 1967">
-                            <i data-lucide="play-circle"></i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Mustang 1967 - Puissance Américaine</h3>
-                        <p class="card-category">Classiques</p>
-                        <div class="card-meta"><span>67k vues</span> • <span>Il y a 2 mois</span></div>
-                    </div>
-                </article>
-                 <article class="video-card" data-category="Luxe" data-title="Rolls Royce - Silence Absolu">
-                    <div class="thumbnail-wrapper">
-                        <img src="https://cdn.pixabay.com/photo/2015/11/06/16/33/rolls-1029584_1280.jpg" alt="Intérieur Rolls Royce" loading="lazy" onerror="handleImageError(this)">
-                        <span class="duration-badge">22:00</span>
-                        <a href="watch.php?watch=6" class="play-overlay" aria-label="Lire la vidéo : Rolls Royce">
-                            <i data-lucide="play-circle"></i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Rolls Royce - Silence Absolu</h3>
-                        <p class="card-category">Luxe</p>
-                        <div class="card-meta"><span>12k vues</span> • <span>Il y a 5 jours</span></div>
-                    </div>
-                </article>
-            </div>
+                <?php createHTMLElementFromJSON(); ?>
+    
+    
 
             <nav class="pagination" aria-label="Pagination">
                 <button class="pagination-link" disabled><i data-lucide="chevron-left"></i></button>
@@ -262,8 +170,6 @@ include './src/php/functions.php'
         </div>
     </div>
 
-    <script src="./src/js/script.js">
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>

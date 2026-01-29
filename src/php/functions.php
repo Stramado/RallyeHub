@@ -17,20 +17,50 @@ function getVideosFromJSON() {
 
 /**
  * Loop through an array and create an HTML element for every element of the array
- * There is a invisible div in front of the embeded video which redirect to the watch video
+ * Génère des articles video-card avec les miniatures YouTube
+ * @return string HTML list of videos
  */
 function createHTMLElementFromJSON() {
     $videos = getVideosFromJSON();
     $html = "";
+    
     foreach ($videos as $video) {
         foreach ($video as $key => $embed) {
-            $html = $html . '
-            <div class="watchVideo">
-                <a class="redirectToWatch" href=/watch.php?watch=' . $key .'></a>
-                <div class="video">
-                    <iframe src="' . $embed . '" frameborder="0"></iframe>
-                </div>
-            </div>
+            // Extraire l'ID de la vidéo YouTube depuis l'URL embed
+            preg_match('/embed\/([^?]+)/', $embed, $matches);
+            $videoId = $matches[1] ?? '';
+            
+            // Générer l'URL de la miniature YouTube
+            $thumbnail = "https://img.youtube.com/vi/{$videoId}/maxresdefault.jpg";
+            $categorie = [
+                0 => "Sport",
+                1 => "Supercars",
+                2 => "Luxe",
+                3 => "Électriques",
+                4 => "Classiques"
+            ];
+
+            $html .= '
+                <a href="/watch.php?watch=' . htmlspecialchars($key) . '">
+                    <article class="video-card" 
+                             data-embed-url="' . htmlspecialchars($embed) . '" 
+                             data-video-id="' . htmlspecialchars($videoId) . '">
+                        <div class="thumbnail-wrapper">
+                            <img src="' . htmlspecialchars($thumbnail) . '" alt="Miniature de la vidéo" loading="lazy" onerror="handleImageError(this)" class="video-thumbnail">
+                            <span class="duration-badge"></span>
+                            <button class="play-overlay" aria-label="Lire la vidéo : ">
+                                <i data-lucide="play-circle"></i>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-title"></h3>
+                                <button class="btn-icon-sm" aria-label="Options"><i data-lucide="more-vertical"></i></button>
+                            </div>
+                            <p class="card-category">' . htmlspecialchars($categorie[random_int(0, 4)]) . '</p>    
+                        </div>
+                    </article>
+                </a>
             ';
         }
     }
@@ -81,8 +111,8 @@ function parseJSONToGetVideos(){
 
     foreach ($json_data['videos'][0] as $key => $value) {
         if ($value === "1") {
-            echo $key;
             echo $value;
+            echo $key;
         }
     }
 }
