@@ -1,7 +1,11 @@
 # RallyeHub
 Requis :
 - PHP 8.5.2
-## Pour démarrer le serveur
+## Pour installer PHP (dans un terminal powershell)
 ```Powershell
-php -S 0.0.0.0:80
+winget install PHP.PHP.8.5
+```
+## Pour démarrer le serveur (dans un terminal powershell)
+```Powershell
+php -S 127.0.0.1:80
 ```

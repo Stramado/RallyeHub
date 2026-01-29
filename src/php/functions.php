@@ -81,11 +81,8 @@ function displayVideo() {
         echo '
         <div class="video-player-container">
             <iframe
-                height="477"
-                width="850"
                 src="' . $videoUrl .'"
                 title="YouTube video player"
-                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
