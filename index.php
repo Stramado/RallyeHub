@@ -124,7 +124,7 @@ include './src/php/functions.php'
             </div>
 
             <div class="video-grid" id="video-grid">
-    <?php createHTMLElementFromJSON(); ?>
+                <?php createHTMLElementFromJSON(); ?>
     
     
 
@@ -175,8 +175,9 @@ include './src/php/functions.php'
         </div>
     </div>
 
-    <script src="./src/js/script.js">
+    <script src="./src/js/main.js">
         lucide.createIcons();
     </script>
+    <script src="./src/js/youtube_meta.js"></script>
 </body>
 </html>

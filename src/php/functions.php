@@ -46,7 +46,7 @@ function createHTMLElementFromJSON() {
                              data-embed-url="' . htmlspecialchars($embed) . '" 
                              data-video-id="' . htmlspecialchars($videoId) . '">
                         <div class="thumbnail-wrapper">
-                            <img src="' . htmlspecialchars($thumbnail) . '" alt="" loading="lazy" onerror="handleImageError(this)" class="video-thumbnail">
+                            <img src="' . htmlspecialchars($thumbnail) . '" alt="Miniature de la vidéo" loading="lazy" onerror="handleImageError(this)" class="video-thumbnail">
                             <span class="duration-badge"></span>
                             <button class="play-overlay" aria-label="Lire la vidéo : ">
                                 <i data-lucide="play-circle"></i>
@@ -57,8 +57,7 @@ function createHTMLElementFromJSON() {
                                 <h3 class="card-title"></h3>
                                 <button class="btn-icon-sm" aria-label="Options"><i data-lucide="more-vertical"></i></button>
                             </div>
-                            <p class="card-category">' . htmlspecialchars($categorie[random_int(0, 4)]) . '</p>
-                            
+                            <p class="card-category">' . htmlspecialchars($categorie[random_int(0, 4)]) . '</p>    
                         </div>
                     </article>
                 </a>

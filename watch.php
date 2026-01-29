@@ -10,12 +10,14 @@ include "./src/php/functions.php";
     <meta name="language" content="fr">
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
-    <title>RallyeHub - Watch a Video</title>
+    <title>RallyeHub - Regarder une vidéo</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="stylesheet" href="./static/stylesheets/watch.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./src/js/load_title.js"></script>
+    <script src="./src/js/youtube_meta.js"></script>
 </head>
 <body>
 
@@ -71,7 +73,7 @@ include "./src/php/functions.php";
             <?php displayVideo(); # Parse the GET arguments and display the video ?>
 
             <div class="video-info-block">
-                <h1 class="video-title">Porsche 911 GT3 - L'essai ultime sur circuit</h1>
+                <h1 class="video-title"></h1>
                 
                 <div class="video-actions">
                     <div class="video-stats">
@@ -93,7 +95,7 @@ include "./src/php/functions.php";
 
             <div class="video-description-area">
                 <div class="description-text">
-                    <p>Découvrez notre essai complet de la nouvelle Porsche 911 GT3. Au programme : tour de piste, analyse du moteur atmosphérique et test des équipements intérieurs.</p>
+                    <p>Incroyable voiture de Rallye (WRC) qui roule. Venez regarder comme son 4 cylindres hurle et comme le pilote prend ses virages</p>
                 </div>
 
                 <details class="transcript-accordion">
@@ -109,43 +111,13 @@ include "./src/php/functions.php";
             <section class="similar-videos">
                 <h2>Vidéos similaires</h2>
                 <div class="video-grid">
-                    <article class="video-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://images.unsplash.com/photo-1544602356-ac9a60faa826?w=600&q=80" alt="Lamborghini Huracan">
-                            <span class="duration-badge">08:30</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Lamborghini Huracan EVO</h3>
-                            <p class="card-category">Supercars</p>
-                        </div>
-                    </article>
-                    <article class="video-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&q=80" alt="Tesla Model S">
-                            <span class="duration-badge">12:15</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Tesla Model S Plaid</h3>
-                            <p class="card-category">Électriques</p>
-                        </div>
-                    </article>
-                    <article class="video-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80" alt="Ford Mustang">
-                            <span class="duration-badge">10:00</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Ford Mustang V8</h3>
-                            <p class="card-category">Classiques</p>
-                        </div>
-                    </article>
+                    <?php createHTMLElementFromJSON();?>
                 </div>
             </section>
-
         </main>
     </div>
 
-    <script src="./src/js/script.js">
+    <script src="./src/js/main.js">
         lucide.createIcons();
     </script>
 </body>
