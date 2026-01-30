@@ -11,9 +11,14 @@ include './src/php/functions.php'
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyeHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
     <title>RallyeHub - Galerie des Vidéos</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="./src/js/youtube_meta.js"></script>
     <script src="./src/js/main.js"></script>
@@ -35,6 +40,7 @@ include './src/php/functions.php'
                     <label for="search-input" class="sr-only">Rechercher des vidéos</label>
                     <div class="input-wrapper">
                         <i data-lucide="search" class="search-icon"></i>
+                        
                         <input 
                             id="search-input" 
                             type="search" 
@@ -43,8 +49,13 @@ include './src/php/functions.php'
                             aria-label="Rechercher des vidéos de voitures"
                             oninput="filterVideos()"
                         >
+                        
+                        <button type="button" class="virtual-keyboard-btn" aria-label="Ouvrir le clavier virtuel" onclick="toggleKeyboard()">
+                            <i data-lucide="keyboard"></i>
+                        </button>
                     </div>
                 </form>
+                <div class="simple-keyboard hidden" id="virtual-keyboard-container"></div>
             </div>
 
             <div class="header-actions">
@@ -54,6 +65,7 @@ include './src/php/functions.php'
                 
                 <button class="avatar" aria-label="Profil utilisateur">
                     <img src="https://github.com/shadcn.png" alt="Avatar de l'utilisateur" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-fallback">CN</div>
                 </button>
             </div>
         </div>
@@ -98,7 +110,7 @@ include './src/php/functions.php'
             </nav>
 
             <div class="sidebar-footer">
-                </div>
+            </div>
         </aside>
 
         <main id="main-content" class="main-content">
@@ -119,9 +131,8 @@ include './src/php/functions.php'
 
             <div class="video-grid" id="video-grid">
                 <?php createHTMLElementFromJSON(); ?>
-    
-    
-
+            </div> 
+            
             <nav class="pagination" aria-label="Pagination">
                 <button class="pagination-link" disabled><i data-lucide="chevron-left"></i></button>
                 <button class="pagination-link active" aria-current="page">1</button>
@@ -142,35 +153,44 @@ include './src/php/functions.php'
                 </button>
             </div>
             <div class="modal-body">
-    <div class="setting-item">
-        <div class="setting-text">
-            <span class="setting-label">Mode Contraste Élevé</span>
-            <span class="setting-desc">Augmente la lisibilité du texte</span>
-        </div>
-        <label class="switch-label">
-            <input type="checkbox" class="switch-input" id="contrast-switch">
-            <span class="sr-only">Activer le contraste élevé</span>
-        </label>
-    </div>
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Mode Contraste Élevé</span>
+                        <span class="setting-desc">Augmente la lisibilité du texte</span>
+                    </div>
+                    <label class="switch-label">
+                        <input type="checkbox" class="switch-input" id="contrast-switch">
+                        <span class="sr-only">Activer le contraste élevé</span>
+                    </label>
+                </div>
 
-    <div class="setting-item">
-        <div class="setting-text">
-            <span class="setting-label">Taille du texte</span>
-            <span class="setting-desc">Ajuster la taille de la police</span>
-        </div>
-        <div class="font-controls">
-            <button id="font-decrease" class="btn-font" aria-label="Diminuer la taille du texte">A-</button>
-            <span id="font-display" class="font-value">100%</span>
-            <button id="font-increase" class="btn-font" aria-label="Augmenter la taille du texte">A+</button>
-        </div>
-    </div>
-</div>
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Police Dyslexie</span>
+                        <span class="setting-desc"> Anonymous Pro </span>
+                    </div>
+                    <label class="switch-label">
+                        <input type="checkbox" class="switch-input" id="dyslexic-switch">
+                        <span class="sr-only">Activer la police pour dyslexiques</span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <span class="setting-label">Taille du texte</span>
+                        <span class="setting-desc">Ajuster la taille de la police</span>
+                    </div>
+                    <div class="font-controls">
+                        <button id="font-decrease" class="btn-font" aria-label="Diminuer la taille du texte">A-</button>
+                        <span id="font-display" class="font-value">100%</span>
+                        <button id="font-increase" class="btn-font" aria-label="Augmenter la taille du texte">A+</button>
+                    </div>
+                </div>
+            </div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="toggleModal('settings-modal')">Enregistrer</button>
             </div>
         </div>
     </div>
-
-    <script>lucide.createIcons();</script>
 </body>
 </html>
