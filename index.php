@@ -45,7 +45,7 @@ include './src/php/functions.php'
                             id="search-input" 
                             type="search" 
                             class="input-field search-input"
-                            placeholder="Rechercher une Ferrari, Tesla..."
+                            placeholder="Rechercher une vidéo"
                             aria-label="Rechercher des vidéos de voitures"
                             oninput="filterVideos()"
                         >
@@ -77,33 +77,33 @@ include './src/php/functions.php'
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li>
-                        <button class="nav-btn active" onclick="filterCategory('all', this)">
-                            <i data-lucide="layout-grid"></i> Toutes les vidéos
+                        <button class="nav-btn active" data-category="Toutes les vidéos">
+                        <i data-lucide="layout-grid"></i> Toutes les vidéos
                         </button>
                     </li>
                     <li>
-                        <button class="nav-btn" onclick="filterCategory('Sport', this)">
-                            <i data-lucide="zap"></i> Sport
+                        <button class="nav-btn" data-category="Sport">
+                        <i data-lucide="zap"></i> Sport
                         </button>
                     </li>
                     <li>
-                        <button class="nav-btn" onclick="filterCategory('Supercars', this)">
-                            <i data-lucide="trophy"></i> Supercars
+                        <button class="nav-btn" data-category="Supercars">
+                        <i data-lucide="trophy"></i> Supercars
                         </button>
                     </li>
                     <li>
-                        <button class="nav-btn" onclick="filterCategory('Luxe', this)">
-                            <i data-lucide="gem"></i> Luxe
+                        <button class="nav-btn" data-category="Luxe">
+                        <i data-lucide="gem"></i> Luxe
                         </button>
                     </li>
                     <li>
-                        <button class="nav-btn" onclick="filterCategory('Électriques', this)">
-                            <i data-lucide="battery-charging"></i> Électriques
+                        <button class="nav-btn" data-category="Électriques">
+                        <i data-lucide="battery-charging"></i> Électriques
                         </button>
                     </li>
                     <li>
-                        <button class="nav-btn" onclick="filterCategory('Classiques', this)">
-                            <i data-lucide="calendar"></i> Classiques
+                        <button class="nav-btn" data-category="Classiques">
+                        <i data-lucide="calendar"></i> Classiques
                         </button>
                     </li>
                 </ul>

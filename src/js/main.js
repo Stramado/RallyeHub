@@ -101,25 +101,64 @@ function filterCategory(category, btnElement) {
 
     const cards = document.querySelectorAll('.video-card');
     cards.forEach(card => {
-        const cardCat = card.getAttribute('data-category');
-        if (category === 'all' || cardCat === category) card.style.display = 'flex';
+        const cardCat = card.querySelector('.card-category').innerText;
+        if (category === 'Toutes les vidéos' || cardCat === category) card.style.display = 'flex';
         else card.style.display = 'none';
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.nav-btn');
+
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.getAttribute('data-category') || 'all';
+            filterCategory(category, btn);
+        });
+    });
+});
+
 function filterVideos() {
-    const query = document.getElementById('search-input').value.toLowerCase();
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
     const cards = document.querySelectorAll('.video-card');
     let count = 0;
+
     cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(query)) {
-            card.style.display = 'flex';
+        // Récupération du titre et de la catégorie
+        const titleElement = card.querySelector('.card-title');
+        const categoryElement = card.querySelector('.card-category');
+
+        const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+        const category = categoryElement ? categoryElement.textContent.toLowerCase() : '';
+
+        // Si le texte recherché est trouvé dans le titre OU la catégorie
+        const match = title.includes(query) || category.includes(query);
+
+        // On montre ou on cache la carte
+        if (match || query === '') {
+            card.style.display = ''; // ne casse pas le layout grid/flex
             count++;
+        } else {
+            card.style.display = 'none';
         }
-        else card.style.display = 'none';
     });
-    console.log("Recherche terminée : " + count + " vidéos trouvées pour " + query);
+
+    // Optionnel : afficher un message si aucun résultat
+    const container = document.querySelector('.video-grid') || document.body;
+    let noResultMsg = document.getElementById('no-results-message');
+
+    if (count === 0) {
+        if (!noResultMsg) {
+            noResultMsg = document.createElement('p');
+            noResultMsg.id = 'no-results-message';
+            noResultMsg.textContent = 'Aucune vidéo trouvée.';
+            noResultMsg.style.textAlign = 'center';
+            noResultMsg.style.marginTop = '1em';
+            container.appendChild(noResultMsg);
+        }
+    } else if (noResultMsg) {
+        noResultMsg.remove();
+    }
 }
 
 function sortVideos() {

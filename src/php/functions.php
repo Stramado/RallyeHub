@@ -32,7 +32,7 @@ function createHTMLElementFromJSON() {
             
             // Générer l'URL de la miniature YouTube
             $thumbnail = "https://img.youtube.com/vi/{$videoId}/maxresdefault.jpg";
-            $categorie = [
+            $categories = [
                 0 => "Sport",
                 1 => "Supercars",
                 2 => "Luxe",
@@ -40,12 +40,15 @@ function createHTMLElementFromJSON() {
                 4 => "Classiques"
             ];
 
+            $category = $categories[random_int(0, count($categories) - 1)];
+
             $html .= '
-                <a href="/watch.php?watch=' . htmlspecialchars($key) . '">
-                    <article class="video-card" 
+                <article class="video-card" 
                              data-embed-url="' . htmlspecialchars($embed) . '" 
                              data-video-id="' . htmlspecialchars($videoId) . '">
-                        <div class="thumbnail-wrapper">
+                    <a href="/watch.php?watch=' . htmlspecialchars($key) . '" id=video-link>
+                        
+                            <div class="thumbnail-wrapper">
                             <img src="' . htmlspecialchars($thumbnail) . '" alt="Miniature de la vidéo" loading="lazy" onerror="handleImageError(this)" class="video-thumbnail">
                             <span class="duration-badge"></span>
                             <button class="play-overlay" aria-label="Lire la vidéo : ">
@@ -54,13 +57,14 @@ function createHTMLElementFromJSON() {
                         </div>
                         <div class="card-content">
                             <div class="card-header">
-                                <h3 class="card-title"></h3>
+                                <h3 class="card-title" id="card-title"></h3>
                                 <button class="btn-icon-sm" aria-label="Options"><i data-lucide="more-vertical"></i></button>
                             </div>
-                            <p class="card-category">' . htmlspecialchars($categorie[random_int(0, 4)]) . '</p>    
+                            <p class="card-category">' . htmlspecialchars($category) . '</p>    
                         </div>
-                    </article>
-                </a>
+                    </a>
+                </article>
+                
             ';
         }
     }
