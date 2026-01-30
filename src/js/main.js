@@ -91,3 +91,50 @@ window.onclick = function (event) {
         modal.classList.add('hidden');
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // On récupère les deux boutons (switchs) dans la modale
+    const switches = document.querySelectorAll('.switch-input');
+    
+    // Sécurité : on vérifie qu'on a bien trouvé les boutons
+    if (switches.length >= 2) {
+        const contrastSwitch = switches[0]; // Le 1er bouton (Contraste)
+        const motionSwitch = switches[1];   // Le 2ème bouton (Animations)
+
+        // --- A. Contraste Élevé ---
+        // 1. Vérifier si l'utilisateur l'avait déjà activé avant (mémoire)
+        if (localStorage.getItem('high-contrast') === 'true') {
+            document.body.classList.add('high-contrast');
+            contrastSwitch.checked = true;
+        }
+
+        // 2. Écouter le clic sur le bouton
+        contrastSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('high-contrast');
+                localStorage.setItem('high-contrast', 'true');
+            } else {
+                document.body.classList.remove('high-contrast');
+                localStorage.setItem('high-contrast', 'false');
+            }
+        });
+
+        // --- B. Réduire Animations ---
+        // 1. Vérifier mémoire
+        if (localStorage.getItem('reduced-motion') === 'true') {
+            document.body.classList.add('reduced-motion');
+            motionSwitch.checked = true;
+        }
+
+        // 2. Écouter le clic
+        motionSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('reduced-motion');
+                localStorage.setItem('reduced-motion', 'true');
+            } else {
+                document.body.classList.remove('reduced-motion');
+                localStorage.setItem('reduced-motion', 'false');
+            }
+        });
+    }
+});
