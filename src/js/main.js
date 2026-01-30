@@ -1,21 +1,21 @@
 // 1. Initialisation des icônes Lucide
 lucide.createIcons();
 
-// 2. Gestion des images cassées (Fallback)
-// C'est la traduction de ton fichier ImageWithFallback.tsx
+//  Gestion des images cassées (Fallback)
+// 
 function handleImageError(imgElement) {
     // Si l'image ne charge pas, on met un placeholder ou on cache
-    // Option A: Placeholder gris avec texte
+  
     imgElement.src = 'https://cdn.pixabay.com/photo/2022/07/04/10/46/vintage-car-7300881_1280.jpg';
 
-    // Option B (Alternative): Si l'avatar casse, on affiche les initiales
+    
     if (imgElement.parentElement.classList.contains('avatar')) {
         imgElement.style.display = 'none';
         imgElement.nextElementSibling.style.display = 'flex'; // Affiche la div fallback
     }
 }
 
-// 3. Filtrage par Catégorie (Sidebar)
+//  Filtrage par Catégorie (Sidebar)
 function filterCategory(category, btnElement) {
     // Gestion de la classe active sur les boutons
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -53,20 +53,17 @@ function filterVideos() {
     });
 }
 
-// 5. Tri (Select box) - Exemple simple
+// Tri (Select box) 
+// 5. Tri (Select box)
 function sortVideos() {
-    const sortBy = document.getElementById('sort-select').value;
+    
     const grid = document.getElementById('video-grid');
-    const cards = Array.from(grid.getElementsByClassName('video-card'));
+    if(!grid) return;
 
-    // Note: Pour un vrai tri, il faudrait des data-attributes (data-date, data-views)
-    // Ici on simule juste un mélange pour montrer que ça réagit
-    if (sortBy === 'az') {
-        cards.sort((a, b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')));
-    } else {
-        // Retour à l'ordre "par défaut" (ou aléatoire pour la démo)
-        cards.sort(() => Math.random() - 0.5);
-    }
+    const cards = Array.from(grid.getElementsByClassName('video-card'));
+    
+    // Mélange simple pour simuler "Récents" ou "Populaires"
+    cards.sort(() => Math.random() - 0.5);
 
     // Réinsertion dans le DOM
     cards.forEach(card => grid.appendChild(card));
@@ -78,7 +75,8 @@ function toggleModal(modalId) {
     if (modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
         // Accessibilité : mettre le focus dans la modale
-        modal.querySelector('button').focus();
+        const firstBtn = modal.querySelector('button, input');
+        if(firstBtn) firstBtn.focus();
     } else {
         modal.classList.add('hidden');
     }
@@ -92,23 +90,21 @@ window.onclick = function (event) {
     }
 }
 
+//  GESTION ACCESSIBILITÉ
 document.addEventListener('DOMContentLoaded', () => {
-    // On récupère les deux boutons (switchs) dans la modale
-    const switches = document.querySelectorAll('.switch-input');
     
-    // Sécurité : on vérifie qu'on a bien trouvé les boutons
-    if (switches.length >= 2) {
-        const contrastSwitch = switches[0]; // Le 1er bouton (Contraste)
-        const motionSwitch = switches[1];   // Le 2ème bouton (Animations)
+    //  GESTION DU CONTRASTE
+    // On cherche l'ID spécifique ou le premier switch disponible
+    const contrastSwitch = document.getElementById('contrast-switch') || document.querySelector('.switch-input');
 
-        // --- A. Contraste Élevé ---
-        // 1. Vérifier si l'utilisateur l'avait déjà activé avant (mémoire)
+    if (contrastSwitch) {
+        // Vérifier si l'utilisateur l'avait déjà activé avant (mémoire)
         if (localStorage.getItem('high-contrast') === 'true') {
             document.body.classList.add('high-contrast');
             contrastSwitch.checked = true;
         }
 
-        // 2. Écouter le clic sur le bouton
+        //  Écouter le clic sur le bouton
         contrastSwitch.addEventListener('change', (e) => {
             if (e.target.checked) {
                 document.body.classList.add('high-contrast');
@@ -118,23 +114,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('high-contrast', 'false');
             }
         });
+    }
 
-        // --- B. Réduire Animations ---
-        // 1. Vérifier mémoire
-        if (localStorage.getItem('reduced-motion') === 'true') {
-            document.body.classList.add('reduced-motion');
-            motionSwitch.checked = true;
-        }
+    // GESTION TAILLE DU TEXTE 
+    const btnIncrease = document.getElementById('font-increase');
+    const btnDecrease = document.getElementById('font-decrease');
+    const displaySpan = document.getElementById('font-display');
 
-        // 2. Écouter le clic
-        motionSwitch.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                document.body.classList.add('reduced-motion');
-                localStorage.setItem('reduced-motion', 'true');
-            } else {
-                document.body.classList.remove('reduced-motion');
-                localStorage.setItem('reduced-motion', 'false');
-            }
+    // Taille par défaut : 100%
+    // On récupère la valeur sauvegardée ou on met 100 par défaut
+    let currentFontSize = parseInt(localStorage.getItem('fontSize')) || 100;
+
+    // Fonction pour appliquer la taille
+    function applyFontSize(size) {
+        // Limites de sécurité (entre 70% et 150%)
+        if (size < 70) size = 70;
+        if (size > 150) size = 150;
+
+        // On applique le style au niveau de la racine (HTML)
+
+        document.documentElement.style.fontSize = size + '%';
+        
+        // Mise à jour de l'affichage
+        if (displaySpan) displaySpan.innerText = size + '%';
+        
+        // Sauvegarde
+        localStorage.setItem('fontSize', size);
+        
+        return size;
+    }
+
+    // Appliquer la taille au chargement de la page
+    applyFontSize(currentFontSize);
+
+    // Écouteurs d'événements (Clics)
+    if (btnIncrease && btnDecrease) {
+        btnIncrease.addEventListener('click', () => {
+            currentFontSize = applyFontSize(currentFontSize + 10);
+        });
+
+        btnDecrease.addEventListener('click', () => {
+            currentFontSize = applyFontSize(currentFontSize - 10);
         });
     }
 });

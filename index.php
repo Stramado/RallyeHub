@@ -112,7 +112,6 @@ include './src/php/functions.php'
                         <select id="sort-select" class="select-field" onchange="sortVideos()">
                             <option value="recent">Plus récents</option>
                             <option value="popular">Populaires</option>
-                            <option value="az">A-Z</option>
                         </select>
                     </div>
                 </div>
@@ -143,27 +142,29 @@ include './src/php/functions.php'
                 </button>
             </div>
             <div class="modal-body">
-                <div class="setting-item">
-                    <div class="setting-text">
-                        <span class="setting-label">Mode Contraste Élevé</span>
-                        <span class="setting-desc">Augmente la lisibilité du texte</span>
-                    </div>
-                    <label class="switch-label">
-                        <input type="checkbox" class="switch-input">
-                        <span class="sr-only">Activer le contraste élevé</span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <div class="setting-text">
-                        <span class="setting-label">Réduire les animations</span>
-                        <span class="setting-desc">Minimise les mouvements à l'écran</span>
-                    </div>
-                    <label class="switch-label">
-                        <input type="checkbox" class="switch-input" checked>
-                        <span class="sr-only">Activer la réduction d'animations</span>
-                    </label>
-                </div>
-            </div>
+    <div class="setting-item">
+        <div class="setting-text">
+            <span class="setting-label">Mode Contraste Élevé</span>
+            <span class="setting-desc">Augmente la lisibilité du texte</span>
+        </div>
+        <label class="switch-label">
+            <input type="checkbox" class="switch-input" id="contrast-switch">
+            <span class="sr-only">Activer le contraste élevé</span>
+        </label>
+    </div>
+
+    <div class="setting-item">
+        <div class="setting-text">
+            <span class="setting-label">Taille du texte</span>
+            <span class="setting-desc">Ajuster la taille de la police</span>
+        </div>
+        <div class="font-controls">
+            <button id="font-decrease" class="btn-font" aria-label="Diminuer la taille du texte">A-</button>
+            <span id="font-display" class="font-value">100%</span>
+            <button id="font-increase" class="btn-font" aria-label="Augmenter la taille du texte">A+</button>
+        </div>
+    </div>
+</div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="toggleModal('settings-modal')">Enregistrer</button>
             </div>

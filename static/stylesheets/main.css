@@ -76,3 +76,58 @@ body.high-contrast .pagination-link.active {
     color: #000000 !important; /* Texte noir pur */
     font-weight: 900;           /* Texte très gras */
 }
+
+/* --- CONTRÔLES TAILLE DU TEXTE --- */
+.font-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-hover);
+    padding: 4px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.btn-font {
+    background: var(--bg-card);
+    color: var(--text-white);
+    border: 1px solid var(--border-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-font:hover {
+    background: var(--primary-orange);
+    color: white;
+    border-color: var(--primary-orange);
+}
+
+.btn-font:active {
+    transform: scale(0.95);
+}
+
+.font-value {
+    font-variant-numeric: tabular-nums; /* Empêche les chiffres de bouger */
+    min-width: 45px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* En mode contraste élevé, on adapte les boutons */
+body.high-contrast .btn-font {
+    border: 2px solid #fff;
+    color: #fff;
+    background: #000;
+}
+body.high-contrast .btn-font:hover {
+    background: #00ffff;
+    color: #000;
+}
