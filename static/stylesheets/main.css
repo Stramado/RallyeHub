@@ -1,6 +1,4 @@
-/* ====================================
-   MAIN.CSS - Styles communs de base
-   ==================================== */
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap');
 
 /* --- VARIABLES CSS --- */
 :root {
@@ -30,6 +28,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 body {
@@ -42,22 +41,28 @@ body {
 }
 
 /* --- MODE CONTRASTE ÉLEVÉ --- */
-/* Cette classe sera ajoutée au <body> via JavaScript */
 body.high-contrast {
-    /* On écrase les variables pour maximiser le contraste */
     --bg-dark: #000000;
     --bg-card: #000000;
     --bg-hover: #1a1a1a;
-    --border-color: #ffffff;      /* Bordures blanches très visibles */
+    --border-color: #ffffff;
     
     --text-white: #ffffff;
-    --text-muted: #ffff00;        /* Le texte gris devient Jaune fluo */
-    --primary-orange: #00ffff;    /* L'orange devient Cyan (très contrasté sur noir) */
+    --text-muted: #ffff00;
+    --primary-orange: #00ffff;
 }
 
-/* Ajustements spécifiques pour le mode contraste */
 body.high-contrast .video-card {
-    border: 2px solid var(--border-color); /* Bordures plus épaisses */
+    border: 2px solid var(--border-color);
+}
+
+/* Force le texte en NOIR sur les éléments qui ont le fond Cyan */
+body.high-contrast .nav-btn.active,
+body.high-contrast .btn-primary,
+body.high-contrast .skip-link,
+body.high-contrast .pagination-link.active {
+    color: #000000 !important;
+    font-weight: 900;
 }
 
 /* --- MODE ANIMATIONS RÉDUITES --- */
@@ -67,13 +72,187 @@ body.reduced-motion * {
     scroll-behavior: auto !important;
 }
 
-/* Force le texte en NOIR sur les éléments qui ont le fond Cyan */
-body.high-contrast .nav-btn.active,
-body.high-contrast .btn-primary,
-body.high-contrast .skip-link,
-body.high-contrast .pagination-link.active {
-    color: #000000 !important; /* Texte noir pur */
-    font-weight: 900;           /* Texte très gras */
+/* --- CONTRÔLES TAILLE DU TEXTE --- */
+.font-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-hover);
+    padding: 4px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.btn-font {
+    background: var(--bg-card);
+    color: var(--text-white);
+    border: 1px solid var(--border-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-font:hover {
+    background: var(--primary-orange);
+    color: white;
+    border-color: var(--primary-orange);
+}
+
+.btn-font:active {
+    transform: scale(0.95);
+}
+
+.font-value {
+    font-variant-numeric: tabular-nums;
+    min-width: 45px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+body.high-contrast .btn-font {
+    border: 2px solid #fff;
+    color: #fff;
+    background: #000;
+}
+body.high-contrast .btn-font:hover {
+    background: #00ffff;
+    color: #000;
+}
+
+/* --- MODE POLICE DYSLEXIE --- */
+body.dyslexic-font, 
+body.dyslexic-font * {
+    font-family: 'Anonymous Pro', monospace !important; 
+    letter-spacing: 0.05em;
+}
+
+/* --- BARRE DE RECHERCHE & INPUT (NOUVEAU) --- */
+/* Permet de bien caler les icônes à gauche et à droite */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Icône Loupe (Gauche) */
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--text-muted);
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Champ Input */
+.input-field {
+    width: 100%;
+    background-color: var(--bg-card); /* Ajusté pour matcher le thème */
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    /* Padding: Espace à gauche pour la loupe, espace à droite pour le clavier */
+    padding: 0.5rem 2.5rem 0.5rem 2.5rem !important; 
+    color: var(--text-white);
+    font-size: 0.9rem;
+}
+
+/* --- CLAVIER VIRTUEL --- */
+
+/* Le bouton icône (Droite) */
+.virtual-keyboard-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    z-index: 10;
+}
+.virtual-keyboard-btn:hover {
+    color: var(--text-white);
+    background-color: var(--bg-hover);
+}
+
+/* Style du conteneur du clavier */
+.simple-keyboard {
+    position: absolute !important;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    margin-top: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-radius: var(--radius);
+    color: #000;
+}
+
+.simple-keyboard.hidden {
+    display: none;
+}
+
+/* Thème sombre pour le clavier */
+.hg-theme-default {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+.hg-button {
+    background: #333 !important;
+    color: white !important;
+    border-bottom: 2px solid #111 !important;
+}
+.hg-button:hover {
+    background: var(--primary-orange) !important;
+    color: white !important; /* Texte blanc sur fond orange pour lisibilité */
+}
+
+/* En mode Contraste Élevé */
+body.high-contrast .hg-theme-default {
+    background-color: #000 !important;
+    border: 2px solid #fff;
+}
+body.high-contrast .hg-button {
+    background: #000 !important;
+    border: 1px solid #fff !important;
+    color: #ff0 !important;
+}
+body.high-contrast .hg-button:hover {
+    background: #00ffff !important;
+    color: #000 !important;
+}
+
+
+/* Style spécifique pour le bouton Entrée du clavier virtuel */
+.hg-button-enter {
+    background-color: var(--primary-orange) !important;
+    color: #fff !important;
+    font-weight: bold;
+    max-width: 150px !important; /* Bouton un peu plus large */
+    border-bottom: 2px solid #b34700 !important;
+}
+
+/* En mode contraste élevé, le bouton Entrée ressort aussi */
+body.high-contrast .hg-button-enter {
+    background-color: #00ffff !important;
+    color: #000 !important;
+    border: 2px solid #fff !important;
 }
 
 .mentions-politiques {

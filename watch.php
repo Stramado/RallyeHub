@@ -11,10 +11,15 @@ include "./src/php/functions.php";
     <meta name="description" content="Profitez de regarder les vidéos de vos pilotes de rallye préférés, avec vos amis, votre famille et le monde entier sur RallyeHub">
     <meta name="keywords" content="vidéo, partage, rallye, gratuit, visionnage, social">
     <title>RallyeHub - Regarder une vidéo</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+
     <link rel="stylesheet" href="./static/stylesheets/main.css">
     <link rel="stylesheet" href="./static/stylesheets/index.css">
     <link rel="stylesheet" href="./static/stylesheets/watch.css">
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="./src/js/main.js"></script>
     <script src="./src/js/load_title.js"></script>
@@ -32,13 +37,18 @@ include "./src/php/functions.php";
                 </a>
             </div>
             <div class="search-container">
-                <form role="search">
+                <form role="search" onsubmit="event.preventDefault(); /* filterVideos(); si besoin */">
                     <label for="search-input" class="sr-only">Rechercher</label>
                     <div class="input-wrapper">
                         <i data-lucide="search" class="search-icon"></i>
-                        <input id="search-input" type="search" class="input-field" placeholder="Rechercher...">
+                        <input id="search-input" type="search" class="input-field search-input" placeholder="Rechercher...">
+                        
+                        <button type="button" class="virtual-keyboard-btn" aria-label="Ouvrir le clavier virtuel" onclick="toggleKeyboard()">
+                            <i data-lucide="keyboard"></i>
+                        </button>
                     </div>
                 </form>
+                <div class="simple-keyboard hidden" id="virtual-keyboard-container"></div>
             </div>
             
             <div class="header-actions">
@@ -83,9 +93,7 @@ include "./src/php/functions.php";
             <?php displayVideo(); # Parse the GET arguments and display the video ?>
 
             <div class="video-info-block">
-                <h1 class="video-title"></h1>
-                
-                <div class="video-actions">
+                <h1 class="video-title"></h1> <div class="video-actions">
                     <div class="video-stats">
                         <span>125k vues</span> • <span>Il y a 2 jours</span>
                     </div>
@@ -112,6 +120,7 @@ include "./src/php/functions.php";
                     <?php createHTMLElementFromJSON();?>
                 </div>
             </section>
+
         </main>
     </div>
 
@@ -130,55 +139,32 @@ include "./src/php/functions.php";
                         <span class="setting-desc">Augmente la lisibilité du texte</span>
                     </div>
                     <label class="switch-label">
-                        <input type="checkbox" class="switch-input">
+                        <input type="checkbox" class="switch-input" id="contrast-switch">
                         <span class="sr-only">Activer le contraste élevé</span>
                     </label>
                 </div>
-                <div class="setting-item">
-                    <div class="setting-text">
-                        <span class="setting-label">Réduire les animations</span>
-                        <span class="setting-desc">Minimise les mouvements à l'écran</span>
-                    </div>
-                    <label class="switch-label">
-                        <input type="checkbox" class="switch-input" checked>
-                        <span class="sr-only">Activer la réduction d'animations</span>
-                    </label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-primary" onclick="toggleModal('settings-modal')">Enregistrer</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="settings-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">Paramètres d'accessibilité</h2>
-                <button class="btn-icon" onclick="toggleModal('settings-modal')" aria-label="Fermer">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-            <div class="modal-body">
                 <div class="setting-item">
                     <div class="setting-text">
-                        <span class="setting-label">Mode Contraste Élevé</span>
-                        <span class="setting-desc">Augmente la lisibilité du texte</span>
+                        <span class="setting-label">Police Dyslexie</span>
+                        <span class="setting-desc"> Anonymous Pro </span>
                     </div>
                     <label class="switch-label">
-                        <input type="checkbox" class="switch-input">
-                        <span class="sr-only">Activer le contraste élevé</span>
+                        <input type="checkbox" class="switch-input" id="dyslexic-switch">
+                        <span class="sr-only">Activer la police pour dyslexiques</span>
                     </label>
                 </div>
+
                 <div class="setting-item">
                     <div class="setting-text">
-                        <span class="setting-label">Réduire les animations</span>
-                        <span class="setting-desc">Minimise les mouvements à l'écran</span>
+                        <span class="setting-label">Taille du texte</span>
+                        <span class="setting-desc">Ajuster la taille de la police</span>
                     </div>
-                    <label class="switch-label">
-                        <input type="checkbox" class="switch-input" checked>
-                        <span class="sr-only">Activer la réduction d'animations</span>
-                    </label>
+                    <div class="font-controls">
+                        <button id="font-decrease" class="btn-font" aria-label="Diminuer la taille du texte">A-</button>
+                        <span id="font-display" class="font-value">100%</span>
+                        <button id="font-increase" class="btn-font" aria-label="Augmenter la taille du texte">A+</button>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -186,7 +172,5 @@ include "./src/php/functions.php";
             </div>
         </div>
     </div>
-    
-    <script>lucide.createIcons();</script>
 </body>
 </html>

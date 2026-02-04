@@ -1,93 +1,260 @@
-// 1. Initialisation des icônes Lucide
-lucide.createIcons();
+// --- 1. GESTION ACCESSIBILITÉ & INITIALISATION ---
+document.addEventListener('DOMContentLoaded', () => {
 
-// 2. Gestion des images cassées (Fallback)
-// C'est la traduction de ton fichier ImageWithFallback.tsx
+    // A. INITIALISATION DES ICÔNES
+    lucide.createIcons();
+
+    // B. GESTION DU CLAVIER PHYSIQUE
+    const searchInput = document.getElementById('search-input');
+    if(searchInput){
+        searchInput.addEventListener('input', (event) => {
+            if(window.myKeyboard) {
+                window.myKeyboard.setInput(event.target.value);
+            }
+        });
+        
+        // GESTION TOUCHE ENTRÉE PHYSIQUE
+        searchInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Empêche le rechargement de page
+                filterVideos();         // Lance la recherche
+                document.getElementById('search-input').blur(); // Enlève le focus pour fermer le clavier mobile éventuel
+            }
+        });
+    }
+
+    // C. GESTION DU CONTRASTE
+    const contrastSwitch = document.getElementById('contrast-switch') || document.querySelector('.switch-input');
+    if (contrastSwitch) {
+        if (localStorage.getItem('high-contrast') === 'true') {
+            document.body.classList.add('high-contrast');
+            contrastSwitch.checked = true;
+        }
+        contrastSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('high-contrast');
+                localStorage.setItem('high-contrast', 'true');
+            } else {
+                document.body.classList.remove('high-contrast');
+                localStorage.setItem('high-contrast', 'false');
+            }
+        });
+    }
+
+    // D. GESTION POLICE DYSLEXIE 
+    const dyslexicSwitch = document.getElementById('dyslexic-switch');
+    if (dyslexicSwitch) {
+        if (localStorage.getItem('dyslexic-font') === 'true') {
+            document.body.classList.add('dyslexic-font');
+            dyslexicSwitch.checked = true;
+        }
+        dyslexicSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dyslexic-font');
+                localStorage.setItem('dyslexic-font', 'true');
+            } else {
+                document.body.classList.remove('dyslexic-font');
+                localStorage.setItem('dyslexic-font', 'false');
+            }
+        });
+    }
+
+    // E. GESTION TAILLE DU TEXTE 
+    const btnIncrease = document.getElementById('font-increase');
+    const btnDecrease = document.getElementById('font-decrease');
+    const displaySpan = document.getElementById('font-display');
+    let currentFontSize = parseInt(localStorage.getItem('fontSize')) || 100;
+
+    function applyFontSize(size) {
+        if (size < 70) size = 70;
+        if (size > 250) size = 250;
+        document.documentElement.style.fontSize = size + '%';
+        if (displaySpan) displaySpan.innerText = size + '%';
+        localStorage.setItem('fontSize', size);
+        return size;
+    }
+    applyFontSize(currentFontSize); 
+
+    if (btnIncrease && btnDecrease) {
+        btnIncrease.addEventListener('click', () => { currentFontSize = applyFontSize(currentFontSize + 10); });
+        btnDecrease.addEventListener('click', () => { currentFontSize = applyFontSize(currentFontSize - 10); });
+    }
+});
+
+
+// --- 2. FONCTIONS UTILITAIRES ---
+
 function handleImageError(imgElement) {
-    // Si l'image ne charge pas, on met un placeholder ou on cache
-    // Option A: Placeholder gris avec texte
     imgElement.src = 'https://cdn.pixabay.com/photo/2022/07/04/10/46/vintage-car-7300881_1280.jpg';
-
-    // Option B (Alternative): Si l'avatar casse, on affiche les initiales
     if (imgElement.parentElement.classList.contains('avatar')) {
         imgElement.style.display = 'none';
-        imgElement.nextElementSibling.style.display = 'flex'; // Affiche la div fallback
+        imgElement.nextElementSibling.style.display = 'flex';
     }
 }
 
-// 3. Filtrage par Catégorie (Sidebar)
 function filterCategory(category, btnElement) {
-    // Gestion de la classe active sur les boutons
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
-
-    // Mise à jour du titre
     const title = category === 'all' ? 'Toutes les vidéos' : category;
-    document.getElementById('page-title').innerText = title;
+    const pageTitle = document.getElementById('page-title');
+    if(pageTitle) pageTitle.innerText = title;
 
-    // Filtrage des cartes
     const cards = document.querySelectorAll('.video-card');
     cards.forEach(card => {
-        const cardCat = card.getAttribute('data-category');
-        if (category === 'all' || cardCat === category) {
-            card.style.display = 'flex'; // On réaffiche
-        } else {
-            card.style.display = 'none'; // On cache
-        }
+        const cardCat = card.querySelector('.card-category').innerText;
+        if (category === 'Toutes les vidéos' || cardCat === category) card.style.display = 'flex';
+        else card.style.display = 'none';
     });
 }
 
-// 4. Recherche (Barre de recherche)
+document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.nav-btn');
+
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.getAttribute('data-category') || 'all';
+            filterCategory(category, btn);
+        });
+    });
+});
+
 function filterVideos() {
-    const query = document.getElementById('search-input').value.toLowerCase();
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
     const cards = document.querySelectorAll('.video-card');
+    let count = 0;
 
     cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        // On vérifie si le titre contient la recherche
-        if (title.includes(query)) {
-            card.style.display = 'flex';
+        // Récupération du titre et de la catégorie
+        const titleElement = card.querySelector('.card-title');
+        const categoryElement = card.querySelector('.card-category');
+
+        const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+        const category = categoryElement ? categoryElement.textContent.toLowerCase() : '';
+
+        // Si le texte recherché est trouvé dans le titre OU la catégorie
+        const match = title.includes(query) || category.includes(query);
+
+        // On montre ou on cache la carte
+        if (match || query === '') {
+            card.style.display = ''; // ne casse pas le layout grid/flex
+            count++;
         } else {
             card.style.display = 'none';
         }
     });
+
+    // Optionnel : afficher un message si aucun résultat
+    const container = document.querySelector('.video-grid') || document.body;
+    let noResultMsg = document.getElementById('no-results-message');
+
+    if (count === 0) {
+        if (!noResultMsg) {
+            noResultMsg = document.createElement('p');
+            noResultMsg.id = 'no-results-message';
+            noResultMsg.textContent = 'Aucune vidéo trouvée.';
+            noResultMsg.style.textAlign = 'center';
+            noResultMsg.style.marginTop = '1em';
+            container.appendChild(noResultMsg);
+        }
+    } else if (noResultMsg) {
+        noResultMsg.remove();
+    }
 }
 
-// 5. Tri (Select box) - Exemple simple
 function sortVideos() {
-    const sortBy = document.getElementById('sort-select').value;
     const grid = document.getElementById('video-grid');
+    if (!grid) return;
     const cards = Array.from(grid.getElementsByClassName('video-card'));
-
-    // Note: Pour un vrai tri, il faudrait des data-attributes (data-date, data-views)
-    // Ici on simule juste un mélange pour montrer que ça réagit
-    if (sortBy === 'az') {
-        cards.sort((a, b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')));
-    } else {
-        // Retour à l'ordre "par défaut" (ou aléatoire pour la démo)
-        cards.sort(() => Math.random() - 0.5);
-    }
-
-    // Réinsertion dans le DOM
+    cards.sort(() => Math.random() - 0.5);
     cards.forEach(card => grid.appendChild(card));
 }
 
-// 6. Gestion de la Modale (Settings)
 function toggleModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
-        // Accessibilité : mettre le focus dans la modale
-        modal.querySelector('button').focus();
+        const firstBtn = modal.querySelector('button, input');
+        if (firstBtn) firstBtn.focus();
     } else {
         modal.classList.add('hidden');
     }
 }
 
-// Fermer la modale si on clique en dehors
 window.onclick = function (event) {
     const modal = document.getElementById('settings-modal');
     if (event.target === modal) {
         modal.classList.add('hidden');
     }
+}
+
+// --- 3. CLAVIER VIRTUEL (AZERTY + ENTRÉE) ---
+window.myKeyboard = null;
+
+function toggleKeyboard() {
+    const keyboardContainer = document.getElementById('virtual-keyboard-container');
+    
+    if (keyboardContainer.classList.contains('hidden')) {
+        keyboardContainer.classList.remove('hidden');
+        
+        if (!window.myKeyboard) {
+            window.myKeyboard = new SimpleKeyboard.default({
+                onChange: input => onChange(input),
+                onKeyPress: button => onKeyPress(button),
+                theme: "hg-theme-default hg-layout-default myTheme",
+                // CONFIGURATION AZERTY
+                layout: {
+                    'default': [
+                        '1 2 3 4 5 6 7 8 9 0',
+                        'a z e r t y u i o p',
+                        'q s d f g h j k l m',
+                        '{shift} w x c v b n {backspace}',
+                        '{space} {enter}' // Ajout du bouton Entrée ici
+                    ],
+                    'shift': [
+                        '1 2 3 4 5 6 7 8 9 0',
+                        'A Z E R T Y U I O P',
+                        'Q S D F G H J K L M',
+                        '{shift} W X C V B N {backspace}',
+                        '{space} {enter}'
+                    ]
+                },
+                // TEXTE DES BOUTONS SPÉCIAUX
+                display: {
+                    '{enter}': 'Entrée ↵',
+                    '{shift}': 'Maj ⇧',
+                    '{backspace}': '⌫',
+                    '{space}': ' '
+                }
+            });
+        }
+    } else {
+        keyboardContainer.classList.add('hidden');
+    }
+}
+
+function onChange(input) {
+    const inputElement = document.getElementById('search-input');
+    inputElement.value = input;
+    // On filtre en direct à chaque touche
+    filterVideos();
+}
+
+function onKeyPress(button) {
+    // Gestion MAJ
+    if (button === "{shift}" || button === "{lock}") {
+        handleShift();
+    }
+    // GESTION TOUCHE ENTRÉE DU CLAVIER VIRTUEL
+    if (button === "{enter}") {
+        toggleKeyboard(); // Ferme le clavier
+        filterVideos();   // Relance le filtre pour être sûr
+    }
+}
+
+function handleShift() {
+    let currentLayout = window.myKeyboard.options.layoutName;
+    let shiftToggle = currentLayout === "default" ? "shift" : "default";
+    window.myKeyboard.setOptions({
+        layoutName: shiftToggle
+    });
 }
