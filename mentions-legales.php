@@ -88,10 +88,10 @@
             <h2>2. Hébergement</h2>
             <p>Le site est hébergé par :</p>
             <address>
-                <strong>OVH SAS</strong><br>
-                2 rue Kellermann – 59100 Roubaix – France<br>
-                📞 1007<br>
-                🌐 <a href="https://www.ovhcloud.com" target="_blank" rel="noopener noreferrer">www.ovhcloud.com</a>
+                <strong>IONOS SARL</strong><br>
+                7 PLACE DE LA GARE – 57200 SARREGUEMINES – France<br>
+                📞 3630<br>
+                🌐 <a href="https://www.ionos.fr/" target="_blank" rel="noopener noreferrer">www.ionos.fr</a>
             </address>
         </section>
 

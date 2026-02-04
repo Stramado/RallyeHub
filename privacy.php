@@ -83,7 +83,6 @@
             <h2>2. Données collectées</h2>
             <p>Le site <strong>RallyHub</strong> limite la collecte des données personnelles au strict nécessaire. Les données susceptibles d’être collectées sont :</p>
             <ul>
-                <li>Adresse e-mail (via le formulaire de contact)</li>
                 <li>Adresse IP (à des fins statistiques et de sécurité)</li>
                 <li>Données techniques liées à la navigation (type de navigateur, système d’exploitation, temps de consultation)</li>
             </ul>
@@ -93,7 +92,6 @@
             <h2>3. Finalités du traitement</h2>
             <p>Les données collectées servent exclusivement à :</p>
             <ul>
-                <li>Répondre aux demandes envoyées via le formulaire de contact</li>
                 <li>Améliorer la performance, l’accessibilité et la qualité du site</li>
                 <li>Élaborer des statistiques de fréquentation anonymisées</li>
             </ul>
