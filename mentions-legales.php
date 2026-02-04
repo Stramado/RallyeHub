@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions légales | RallyHub</title>
     <link rel="stylesheet" href="./static/stylesheets/main.css">
+    <link rel="stylesheet" href="./static/stylesheets/index.css">
     <style>
         /* Styles spécifiques à la page Mentions légales */
         main {
@@ -68,7 +69,11 @@
     </style>
 </head>
 <body>
-
+    <div class="logo">
+        <a href="/" style="display: flex; align-items: center;">
+            <img src="./static/img/logo.png" alt="RallyeHub Accueil">
+        </a>
+    </div>
     <main>
         <h1>Mentions légales</h1>
 

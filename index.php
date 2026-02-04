@@ -116,6 +116,39 @@ include './src/php/functions.php'
         </aside>
 
         <main id="main-content" class="main-content">
+
+            <section class="hero-banner" aria-labelledby="hero-title">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        <i data-lucide="flag" class="hero-icon"></i>
+                        Bienvenue sur RallyeHub - Votre plateforme vidéo rallye
+                    </h1>
+                    <p class="hero-description">
+                        <strong>RallyeHub</strong> est la <em>plateforme de partage vidéo</em> dédiée aux passionnés de <strong>sport automobile</strong> et de <strong>rallye</strong>. Découvrez gratuitement des <strong>vidéos de rallye</strong>, des courses de <strong>voitures de sport</strong>, des <strong>supercars</strong> en action, des <strong>voitures classiques</strong> et des <strong>véhicules électriques</strong> haute performance.
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i data-lucide="play-circle" class="feature-icon"></i>
+                            <span><strong>Visionnage gratuit</strong> de vidéos de rallye HD</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="filter" class="feature-icon"></i>
+                            <span><strong>Filtres par catégorie</strong> : Sport, Luxe, Classiques, Électriques</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="search" class="feature-icon"></i>
+                            <span><strong>Recherche avancée</strong> pour trouver vos pilotes favoris</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="accessibility" class="feature-icon"></i>
+                            <span><strong>Interface accessible</strong> avec options de contraste et taille de texte</span>
+                        </div>
+                    </div>
+                    <p class="hero-cta-text">
+                        Utilisez la <strong>barre de recherche</strong> pour trouver des vidéos spécifiques, sélectionnez une <strong>catégorie dans le menu latéral</strong>, ou parcourez notre galerie complète. Profitez d'une expérience de visionnage optimale avec notre lecteur vidéo intégré.
+                    </p>
+                </div>
+            </section>
             
             <div class="content-header">
                 <h2 id="page-title">Toutes les vidéos</h2>
