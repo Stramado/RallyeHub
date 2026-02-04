@@ -75,3 +75,24 @@ body.high-contrast .pagination-link.active {
     color: #000000 !important; /* Texte noir pur */
     font-weight: 900;           /* Texte très gras */
 }
+
+.mentions-politiques {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: block;
+    margin-top: 0.3rem;
+    transition: color 0.2s ease;
+}
+
+.mentions-politiques:hover {
+    color: var(--primary-orange);
+    text-decoration: underline;
+}
+
+/* Séparation visuelle discrète du bloc bas */
+.mentions-politiques:first-of-type {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}

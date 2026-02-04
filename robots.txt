@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Allow: /watch.php
 Allow: /watch.php?watch=*
+Allow: /mentions-legales.php
+Allow: /privacy.php
 Allow: /static/*
 Disallow: /README.md
 Disallow: /src/*

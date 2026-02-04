@@ -113,4 +113,13 @@ function parseJSONToGetVideos(){
         }
     }
 }
+
+/**
+ * Display the legales mentions and privacy politics
+ */
+function displayPrivacyAndMentionsLinks() {
+    echo "
+
+    ";
+}
 ?>

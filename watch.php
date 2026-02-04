@@ -62,7 +62,9 @@ include "./src/php/functions.php";
                     <li><a href="/" class="nav-btn"><i data-lucide="layout-grid"></i> Accueil</a></li>
                     <li><button class="nav-btn active"><i data-lucide="zap"></i> Sport</button></li>
                     <li><button class="nav-btn"><i data-lucide="trophy"></i> Supercars</button></li>
-                    </ul>
+                </ul>
+                <a class="mentions-politiques" href=/mentions-legales.php>Mentions Légales</a>
+                <a class="mentions-politiques" href=/mentions-legales.php>Politique de confidentialité</a>
             </nav>
         </aside>
 

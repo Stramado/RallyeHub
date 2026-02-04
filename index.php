@@ -95,6 +95,8 @@ include './src/php/functions.php'
                         </button>
                     </li>
                 </ul>
+                <a class="mentions-politiques" href=/mentions-legales.php>Mentions Légales</a>
+                <a class="mentions-politiques" href=/mentions-legales.php>Politique de confidentialité</a>
             </nav>
 
             <div class="sidebar-footer">
@@ -168,6 +170,10 @@ include './src/php/functions.php'
                 <button class="btn-primary" onclick="toggleModal('settings-modal')">Enregistrer</button>
             </div>
         </div>
+    </div>
+    
+    <div>
+
     </div>
 
     <script>lucide.createIcons();</script>
