@@ -74,7 +74,7 @@ include "./src/php/functions.php";
                     <li><button class="nav-btn"><i data-lucide="trophy"></i> Supercars</button></li>
                 </ul>
                 <a class="mentions-politiques" href=/mentions-legales.php>Mentions Légales</a>
-                <a class="mentions-politiques" href=/mentions-legales.php>Politique de confidentialité</a>
+                <a class="mentions-politiques" href=/privacy.php>Politique de confidentialité</a>
             </nav>
         </aside>
 
